@@ -11,7 +11,7 @@ namespace KalamazoDefteri.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return Content("HelloWorld!");
+            return View();
         }
     }
 }
