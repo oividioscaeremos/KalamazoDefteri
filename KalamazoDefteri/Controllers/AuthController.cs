@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace KalamazoDefteri.Controllers
 {
-    public class HomeController : Controller
+    public class AuthController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        // GET: Auth
+        public ActionResult Login()
         {
-            return Content("HelloWorld!");
+            return Content("Auth Login Action!");
         }
     }
 }

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace KalamazoDefteri.Controllers
+namespace KalamazoDefteri.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class UsersController : Controller
     {
-        // GET: Home
+        // GET: Admin/Users
         public ActionResult Index()
         {
-            return Content("HelloWorld!");
+            return Content("Admin/Users Index Method!");
         }
     }
 }
