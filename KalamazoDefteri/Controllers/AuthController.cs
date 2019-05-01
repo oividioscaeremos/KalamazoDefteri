@@ -11,7 +11,12 @@ namespace KalamazoDefteri.Controllers
         // GET: Auth
         public ActionResult Login()
         {
-            return Content("Auth Login Action!");
+            return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View();
         }
     }
 }
