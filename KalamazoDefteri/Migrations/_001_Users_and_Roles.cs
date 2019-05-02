@@ -29,7 +29,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("password_hash").AsString(25);
 
             Create.Table("companies")
-                .WithColumn("userID").AsInt32().ForeignKey("users", "ID")
+                .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("companyID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("companyName").AsString(128)
                 .WithColumn("address").AsString(256)
@@ -39,7 +39,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("IBAN").AsString(32); // longest IBAN belongs to Saint Lucia
 
             Create.Table("products")
-                .WithColumn("userID").AsInt32().ForeignKey("users", "ID")
+                .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("productID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("productName").AsString(256)
                 .WithColumn("inStock").AsInt32()
@@ -48,26 +48,28 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("priceAfterTax").AsInt32();
 
             Create.Table("income")
-                .WithColumn("userID").AsInt32().ForeignKey("users", "ID")
+                .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("incomeID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("date").AsDate()
-                .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID")
+                .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("explanation").AsString(512)
-                .WithColumn("productID").AsInt32().ForeignKey("products", "productID")
+                .WithColumn("productID").AsInt32().ForeignKey("products", "productID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("quantity").AsInt32()
                 .WithColumn("total").AsInt32();
 
             Create.Table("outgoings")
-                .WithColumn("userID").AsInt32().ForeignKey("users","ID")
+                .WithColumn("userID").AsInt32().ForeignKey("users","ID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("outgoingID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("date").AsDate()
-                .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID")
+                .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("explanation").AsString(512)
-                .WithColumn("productID").AsInt32().ForeignKey("products", "productID")
+                .WithColumn("productID").AsInt32().ForeignKey("products", "productID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("quantity").AsInt32()
                 .WithColumn("total").AsInt32();
 
-
+            /* CMD line;
+             migrate -a C:\Users\Atabay\source\repos\KalamazoDefteri\KalamazoDefteri\bin\KalamazoDefteri.dll -db MySql -conn "Data Source=127.0.0.1;Database=kalamazodefteri;uid=root;pwd=root;"
+            */
         }
 
         public override bool Equals(object obj)
