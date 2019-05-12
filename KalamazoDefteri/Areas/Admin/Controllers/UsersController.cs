@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KalamazoDefteri.Areas.Admin.ViewModels;
+using KalamazoDefteri.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,13 @@ namespace KalamazoDefteri.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         // GET: Admin/Users
+        //[Authorize(Roles ="admin")]
         public ActionResult Index()
         {
-            return View();
+            return View(new UsersIndex()
+            {
+                Users = Database.Session.Query<User>().ToList()
+            });
         }
     }
 }

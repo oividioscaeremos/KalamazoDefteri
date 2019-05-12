@@ -1,7 +1,12 @@
-﻿
+﻿@model KalamazoDefteri.Areas.Admin.ViewModels.UsersIndex
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+@foreach (var user in Model.Users)
+{
+    <li>@user.username</li>
+}
 

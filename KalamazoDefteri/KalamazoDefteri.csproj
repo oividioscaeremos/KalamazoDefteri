@@ -263,6 +263,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UsersIndex.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\FirmalarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -272,6 +273,10 @@
     </Compile>
     <Compile Include="Infrastructures\RoleProvider.cs" />
     <Compile Include="Migrations\_001_Users_and_Roles.cs" />
+    <Compile Include="Models\Companies.cs" />
+    <Compile Include="Models\Incomings.cs" />
+    <Compile Include="Models\Outgoings.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Auth.cs" />
