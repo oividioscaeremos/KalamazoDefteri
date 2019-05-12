@@ -5,8 +5,29 @@
 
 <h2>Index</h2>
 
-@foreach (var user in Model.Users)
-{
-    <li>@user.username</li>
-}
 
+<div class="col-lg-6 mt-5">
+    <table class="table text-center">
+        <thead class="text-uppercase bg-primary">
+            <tr class="text-white">
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <th scope="row">@user.ID</th>
+                    <td>@user.username</td>
+                    <td>@user.email</td>
+                    <td>@user.password</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
