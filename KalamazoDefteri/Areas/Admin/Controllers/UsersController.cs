@@ -11,7 +11,7 @@ namespace KalamazoDefteri.Areas.Admin.Controllers
         // GET: Admin/Users
         public ActionResult Index()
         {
-            return Content("Admin/Users Index Method!");
+            return View();
         }
     }
 }

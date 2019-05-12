@@ -132,6 +132,7 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\default-css.css" />
+    <Content Include="Content\css\export.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\metisMenu.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
@@ -178,10 +179,17 @@
     <Content Include="Content\images\team\team-author3.jpg" />
     <Content Include="Content\images\team\team-author4.jpg" />
     <Content Include="Content\images\team\team-author5.jpg" />
+    <Content Include="Content\js\amcharts.js" />
+    <Content Include="Content\js\ammap.js" />
     <Content Include="Content\js\bar-chart.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\Chart.min.js" />
+    <Content Include="Content\js\export-data.js" />
+    <Content Include="Content\js\export.min.js" />
+    <Content Include="Content\js\exporting.js" />
     <Content Include="Content\js\jquery.slicknav.min.js" />
     <Content Include="Content\js\jquery.slimscroll.min.js" />
+    <Content Include="Content\js\light.js" />
     <Content Include="Content\js\line-chart.js" />
     <Content Include="Content\js\maps.js" />
     <Content Include="Content\js\metisMenu.min.js" />
@@ -190,8 +198,11 @@
     <Content Include="Content\js\plugins.js" />
     <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\js\scripts.js" />
+    <Content Include="Content\js\serial.js" />
     <Content Include="Content\js\vendor\jquery-2.2.4.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="Content\js\worldLow.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -225,6 +236,9 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -245,10 +259,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppStart\JsAndCssBundlingAppStart.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\FirmalarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Global.asax.cs">
@@ -262,7 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -280,6 +298,9 @@
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Firmalar\Index.cshtml" />
+    <Content Include="Views\Firmalar\Outgoing.cshtml" />
+    <Content Include="Views\Firmalar\Income.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -290,8 +311,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Admin\Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

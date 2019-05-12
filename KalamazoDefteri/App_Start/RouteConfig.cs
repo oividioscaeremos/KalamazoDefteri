@@ -13,12 +13,21 @@ namespace KalamazoDefteri
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            
-
             routes.MapRoute("Home", "", 
                 new { controller = "Home", action = "Index" }
                 );
-
+            routes.MapRoute("HomePath", "index",
+                new { controller = "Home", action = "Index" }
+                );
+            routes.MapRoute("Firmalar", "firmalar",
+               new { controller = "Firmalar", action = "Index" }
+               );
+            routes.MapRoute("Income", "income",
+               new { controller = "Firmalar", action = "Income" }
+               );
+            routes.MapRoute("Outgoing", "outgoing",
+               new { controller = "Firmalar", action = "Outgoing" }
+               );
             routes.MapRoute("Login", "login", 
                 new { controller = "Auth", action = "Login" }
                 );

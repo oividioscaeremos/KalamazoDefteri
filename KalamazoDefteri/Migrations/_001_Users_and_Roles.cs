@@ -12,9 +12,10 @@ namespace KalamazoDefteri.Migrations
     {
         public override void Down()
         {
+            Delete.Table("role_users");
+            Delete.Table("roles");
             Delete.Table("outgoings");
             Delete.Table("income");
-            Delete.Table("products");
             Delete.Table("companies");
             Delete.Table("users");
 
@@ -29,23 +30,14 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("password_hash").AsString(25);
 
             Create.Table("companies")
-                .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("companyID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("companyName").AsString(128)
                 .WithColumn("address").AsString(256)
                 .WithColumn("phoneNumber").AsString(15) 
                 .WithColumn("faxNumber").AsString(15)
                 .WithColumn("TaxAdministration").AsString(15)
-                .WithColumn("IBAN").AsString(32); // longest IBAN belongs to Saint Lucia
-
-            Create.Table("products")
-                .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)
-                .WithColumn("productID").AsInt32().Identity().PrimaryKey()
-                .WithColumn("productName").AsString(256)
-                .WithColumn("inStock").AsInt32()
-                .WithColumn("priceBeforeTax").AsInt32()
-                .WithColumn("taxRate").AsInt32()
-                .WithColumn("priceAfterTax").AsInt32();
+                .WithColumn("IBAN").AsString(32)
+                .WithColumn("balance").AsInt32(); // longest IBAN belongs to Saint Lucia
 
             Create.Table("income")
                 .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)
@@ -53,9 +45,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("date").AsDate()
                 .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("explanation").AsString(512)
-                .WithColumn("productID").AsInt32().ForeignKey("products", "productID").OnDelete(System.Data.Rule.Cascade)
-                .WithColumn("quantity").AsInt32()
-                .WithColumn("total").AsInt32();
+                .WithColumn("payment").AsInt32();
 
             Create.Table("outgoings")
                 .WithColumn("userID").AsInt32().ForeignKey("users","ID").OnDelete(System.Data.Rule.Cascade)
@@ -63,9 +53,15 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("date").AsDate()
                 .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("explanation").AsString(512)
-                .WithColumn("productID").AsInt32().ForeignKey("products", "productID").OnDelete(System.Data.Rule.Cascade)
-                .WithColumn("quantity").AsInt32()
-                .WithColumn("total").AsInt32();
+                .WithColumn("payment").AsInt32();
+
+            Create.Table("roles")
+                .WithColumn("id").AsInt32().Identity().PrimaryKey()
+                .WithColumn("name").AsString(128);
+
+            Create.Table("role_users")
+                .WithColumn("userid").AsInt32().ForeignKey("users","id").OnDelete(System.Data.Rule.Cascade)
+                .WithColumn("roleid").AsInt32().ForeignKey("roles","id").OnDelete(System.Data.Rule.Cascade);
 
             /* CMD line;
              migrate -a C:\Users\Atabay\source\repos\KalamazoDefteri\KalamazoDefteri\bin\KalamazoDefteri.dll -db MySql -conn "Data Source=127.0.0.1;Database=kalamazodefteri;uid=root;pwd=root;"
