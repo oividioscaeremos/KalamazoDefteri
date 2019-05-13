@@ -17,17 +17,26 @@ namespace KalamazoDefteri.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(AuthLogin form)
-        {
-            
+        public ActionResult Login(AuthLogin form, string returnUrl)
+        {            
             if (!ModelState.IsValid)
             {
                 return View(form);
             }
-            FormsAuthentication.SetAuthCookie(form.email, true);
+            FormsAuthentication.SetAuthCookie(form.username, true);
+
+            if (!String.IsNullOrWhiteSpace(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
 
             return RedirectToRoute("Home");
+        }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToRoute("Home");
         }
 
         public ActionResult Register()

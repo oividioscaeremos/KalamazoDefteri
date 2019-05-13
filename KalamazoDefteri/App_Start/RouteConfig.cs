@@ -31,6 +31,9 @@ namespace KalamazoDefteri
             routes.MapRoute("Login", "login", 
                 new { controller = "Auth", action = "Login" }
                 );
+            routes.MapRoute("Logout", "logout", 
+                new { controller = "Auth", action = "Logout" }
+                );
             routes.MapRoute("Register", "register",
                 new { controller = "Auth", action = "Register" }
                 );

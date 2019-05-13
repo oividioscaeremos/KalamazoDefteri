@@ -25,7 +25,7 @@ namespace KalamazoDefteri
         public static void Configure() {
 
             var config = new Configuration();
-
+            // if Migrator mapping generator does not connect to the database just add "charset:utf8" to the end of the connection string.
             var mapper = new ModelMapper();
             mapper.AddMapping<UsersMap>();
             mapper.AddMapping<RolesMap>();

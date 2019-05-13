@@ -31,10 +31,31 @@
                     </div>
                     <!-- profile info & task notification -->
                     <div class="col-md-9 clearfix text-right">
-                        <div class="clearfix d-md-inline-block d-block">
+                        <div class="d-md-inline-block d-block mr-md-4">
+                            <ul class="notification-area">
+                                <li id="full-view"><i class="ti-fullscreen"></i></li>
+                                <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                                <a href="@Url.RouteUrl("logout")">
+                                    <li class="dropdown" style="
+                                    visibility:@(User.Identity.IsAuthenticated == true ? "visible" : "hidden")
+                                        ">
+                                        <i class="ti-power-off"></i>
+                                    </li>
+</ul>                           </a>
+                        </div>
+                        <div class="clearfix d-md-inline-block d-block">                            
                             <div class="user-profile m-0">
                                 <img class="avatar user-thumb" src="../../Content/images/author/avatar.png" alt="avatar">
-                                <h4 class="user-name">Kumkum Rai</h4>
+                                <h4 class="user-name">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        @User.Identity.Name
+                                    }
+                                    else
+                                    {
+                                        <a style="color:white;" href="@Url.RouteUrl("login")">Login</a>
+                                    }
+                                </h4>
                             </div>
                         </div>
                     </div>
@@ -51,19 +72,16 @@
                             <nav>
                                 <ul id="nav_menu">
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Home") && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("Home")"><i class="ti-home"></i>Ana Sayfa</a>
-
-
-
+                                        <a href="@Url.RouteUrl("Home")"><i class="ti-home"></i> Ana Sayfa</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("firmalar","Index")"><i class="ti-list"></i>Firmalar</a>
+                                        <a href="@Url.RouteUrl("firmalar","Index")"><i class="ti-list"></i> Firmalar</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Income") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("income")"><i class="ti-arrow-down"></i>Gelirler</a>
+                                        <a href="@Url.RouteUrl("income")"><i class="ti-arrow-down"></i> Gelirler</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Outgoing") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("outgoing")"><i class="ti-arrow-up"></i>Giderler</a>
+                                        <a href="@Url.RouteUrl("outgoing")"><i class="ti-arrow-up"></i> Giderler</a>
                                     </li>
                                 </ul>
                             </nav>

@@ -2,32 +2,51 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="row mt-5 mb-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table text-center">
+                    <thead class="text-uppercase bg-primary">
+                        <tr class="text-white">
+                            <th scope="col">ID</th>
+                            <th scope="col">Kullanıcı Adı</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Parola</th>
+                            <th scope="col">Rolleri</th>
+                            <th scope="col">İşlemler</th>
 
-<h2>Index</h2>
-
-
-<div class="col-lg-6 mt-5">
-    <table class="table text-center">
-        <thead class="text-uppercase bg-primary">
-            <tr class="text-white">
-                <th scope="col">ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model.Users)
-            {
-                <tr>
-                    <th scope="row">@user.ID</th>
-                    <td>@user.username</td>
-                    <td>@user.email</td>
-                    <td>@user.password</td>
-                </tr>
-            }
-
-
-        </tbody>
-    </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                        <tr>
+                            <th scope="row">@user.ID</th>
+                            <td>@user.username</td>
+                            <td>@user.email</td>
+                            <td>@user.password</td>
+                            <td>{todo}</td>
+                            <td class="pull-left" style="height:26px;">
+                                <button class="btn btn-flat btn-success" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-settings" style="color:yellow;">  </i>DÜZENLE</button>
+                                <button class="btn btn-flat btn-light" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-pin" style="color:blue;">  </i>PAROLA DEĞİŞTİR</button>
+                                <button class="btn btn-flat btn-warning" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-trash" style="color:black;">  </i>SİL</button>
+                            </td>
+                        </tr>
+                        }
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-flat btn-primary pull-right" style="margin-right:0;"><i class="ti-plus" style="color:yellow;">  </i> YENI KULLANICI OLUSTUR</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
