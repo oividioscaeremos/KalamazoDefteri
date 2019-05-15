@@ -51,6 +51,19 @@
 
 -----------------------------------------------------------------------------------*/
 
+/* KENDI OLUSTURDUKLARIM */
+
+.input-validation-error {
+    border: 1px solid red;
+}
+.field-validation-error {
+    color:red;
+}
+.validation-summary-errors {
+    color:red;
+    font-weight:bold;
+}
+
 
 /*------------------------- 1. Core Css -------------------*/
 

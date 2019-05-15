@@ -9,10 +9,12 @@ namespace KalamazoDefteri.Models
 {
     public class User
     {
-        public virtual int ID { get; set; }
-        public virtual string username { get; set; }
-        public virtual string password { get; set; }
-        public virtual string email { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Username { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string PasswordHash { get; set; }
+        public virtual IList<Roles> Roles { get; set; }
+
     }
 
     public class UsersMap : ClassMapping<User>
@@ -22,11 +24,20 @@ namespace KalamazoDefteri.Models
         {
             Table("users");
             Schema("kalamazodefteri");
+            
             Lazy(true);
-            Id(x => x.ID, map => map.Generator(Generators.Identity));
-            Property(x => x.username, map => map.NotNullable(true));
-            Property(x => x.email, map => map.NotNullable(true));
-            Property(x => x.password, map => { map.Column("password_hash"); map.NotNullable(true); });
+            Id(x => x.Id, map => map.Generator(Generators.Assigned));
+            Property(x => x.Username, map => map.NotNullable(true));
+            Property(x => x.Email, map => map.NotNullable(true));
+            Property(x => x.PasswordHash, map => { map.Column("password_hash"); map.NotNullable(true); });
+
+        }
+
+        public class RoleCheckBox
+        {
+            public int Id { get; set; }
+            public bool IsChecked { get; set; }
+            public string Name { get; set; }
         }
     }
 }

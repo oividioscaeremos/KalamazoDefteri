@@ -1,4 +1,6 @@
 ﻿@model KalamazoDefteri.ViewModels.AuthLogin
+@using System.Web.Optimization
+
 @{
     ViewBag.Title = "Login";
     Layout = null;
@@ -12,21 +14,9 @@
     <title>Login - srtdash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="content/images/icon/favicon.ico">
-    <link rel="stylesheet" href="content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="content/css/font-awesome.min.css">
-    <link rel="stylesheet" href="content/css/themify-icons.css">
-    <link rel="stylesheet" href="content/css/metisMenu.css">
-    <link rel="stylesheet" href="content/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="content/css/slicknav.min.css">
-    <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <!-- others css -->
-    <link rel="stylesheet" href="content/css/typography.css">
-    <link rel="stylesheet" href="content/css/default-css.css">
-    <link rel="stylesheet" href="content/css/styles.css">
-    <link rel="stylesheet" href="content/css/responsive.css">
-    <!-- modernizr css -->
-    <script src="content/js/vendor/modernizr-2.8.3.min.js"></script>
+    @Styles.Render("~/projStyles")
+
+
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -43,52 +33,45 @@
             <div class="login-box ptb--100">
                 @using (Html.BeginForm())
                 {
-                <form>
-                    <div class="login-form-head">
-                        <h4>Giriş Yap</h4>
-                    </div>
-                    <div class="login-form-body">
-                        <div class="form-gp exampleInputEmail1">
-                            @Html.LabelFor(x => x.username)
-                            @Html.EditorFor(x => x.username)
-                            <i class="ti-user"></i>
+
+                    <form>
+                        <div class="login-form-head">
+                            <h4>Giriş Yap</h4>
                         </div>
-                        <div class="form-gp exampleInputEmail1">
-                            @Html.LabelFor(x => x.email)
-                            @Html.EditorFor(x => x.email)
-                            <i class="ti-email"></i>
+                        <div class="login-form-body">
+                            @Html.ValidationSummary()
+                            <br />
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.username)
+                                @Html.EditorFor(x => x.username)
+                                <i class="ti-user"></i>
+                            </div>
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.email)
+                                @Html.EditorFor(x => x.email)
+                                <i class="ti-email"></i>
+                            </div>
+                            <div class="form-gp exampleInputPassword1">
+                                @Html.LabelFor(x => x.password)
+                                @Html.EditorFor(x => x.password)
+                                <i class="ti-lock"></i>
+                            </div>
+
+                            <div class="submit-btn-area">
+                                <button id="form_submit" type="submit" value="login">GIRIS YAP <i class="ti-arrow-right"></i></button>
+                            </div>
+                            <div class="form-footer text-center mt-5">
+                                <p class="text-muted">Henüz bir hesabın yok mu? <a href="/register">Kaydol</a></p>
+                            </div>
                         </div>
-                        <div class="form-gp exampleInputPassword1">
-                            @Html.LabelFor(x => x.password)
-                            @Html.EditorFor(x => x.password)
-                            <i class="ti-lock"></i>
-                        </div>
-                        
-                        <div class="submit-btn-area">
-                            <button id="form_submit" type="submit" value="login">GIRIS YAP <i class="ti-arrow-right"></i></button>
-                        </div>
-                        <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Henüz bir hesabın yok mu? <a href="/register">Kaydol</a></p>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                 }
             </div>
         </div>
     </div>
     <!-- login area end -->
     <!-- jquery latest version -->
-    <script src="content/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap 4 js -->
-    <script src="content/js/popper.min.js"></script>
-    <script src="content/js/bootstrap.min.js"></script>
-    <script src="content/js/owl.carousel.min.js"></script>
-    <script src="content/js/metisMenu.min.js"></script>
-    <script src="content/js/jquery.slimscroll.min.js"></script>
-    <script src="content/js/jquery.slicknav.min.js"></script>
+    @Scripts.Render("~/projScripts");
 
-    <!-- others plugins -->
-    <script src="content/js/plugins.js"></script>
-    <script src="content/js/scripts.js"></script>
 </body>
 </html>

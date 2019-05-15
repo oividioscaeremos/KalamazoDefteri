@@ -9,6 +9,7 @@ namespace KalamazoDefteri.Models
 {
     public class Companies
     {
+        public Companies() { }
         public virtual int Companyid { get; set; }
         public virtual string Companyname { get; set; }
         public virtual string Address { get; set; }

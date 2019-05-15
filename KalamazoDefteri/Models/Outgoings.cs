@@ -10,6 +10,8 @@ namespace KalamazoDefteri.Models
     public class Outgoings
     {
         public virtual int Outgoingid { get; set; }
+        public virtual User Users { get; set; }
+        public virtual Companies Companies { get; set; }
         public virtual DateTime Date { get; set; }
         public virtual string Explanation { get; set; }
         public virtual int Payment { get; set; }
@@ -23,10 +25,13 @@ namespace KalamazoDefteri.Models
             Table("outgoings");
             Schema("kalamazodefteri");
             Lazy(true);
-            Id(x => x.Outgoingid, map => map.Generator(Generators.Identity));
+            Id(x => x.Outgoingid, map => map.Generator(Generators.Assigned));
             Property(x => x.Date, map => map.NotNullable(true));
             Property(x => x.Explanation, map => map.NotNullable(true));
             Property(x => x.Payment, map => map.NotNullable(true));
+            ManyToOne(x => x.Users, map => { map.Column("userID"); map.Cascade(Cascade.None); });
+
+            ManyToOne(x => x.Companies, map => { map.Column("companyID"); map.Cascade(Cascade.None); });
 
         }
     }

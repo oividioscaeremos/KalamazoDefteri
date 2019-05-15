@@ -10,7 +10,7 @@ namespace KalamazoDefteri.Models
     public class Roles
     {
         public virtual int id { get; set; }
-        public virtual int name { get; set; }
+        public virtual string name { get; set; }
     }
 
     public class RolesMap : ClassMapping<Roles>
