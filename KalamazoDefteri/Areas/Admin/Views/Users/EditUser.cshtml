@@ -1,0 +1,40 @@
+﻿@model KalamazoDefteri.Areas.Admin.ViewModels.UsersEditUser
+@{
+    ViewBag.Title = "Güncelle "+ @Model.username;
+}
+
+@using (Html.BeginForm()){
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">@Model.username</h4>
+                <form>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-3 my-1">
+                            @Html.LabelFor(u => u.username, new { @class = "sr-only" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">&#64</div>
+                                </div>
+                                @Html.TextBoxFor(u => u.username, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-sm-3 my-1">
+                            @Html.LabelFor(u => u.email, new { @class = "sr-only" })
+                            @Html.TextBoxFor(u => u.email, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-auto my-1">
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                            veya @Html.ActionLink("Vazgeç", "index")
+                        </div>
+                            <div class="col-lg-3 col-md-6">
+                                @Html.Partial("_RoleEditor", Model.Roles)
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+

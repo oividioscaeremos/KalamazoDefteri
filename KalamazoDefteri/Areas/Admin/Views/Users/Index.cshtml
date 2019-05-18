@@ -1,6 +1,7 @@
 ﻿@model KalamazoDefteri.Areas.Admin.ViewModels.UsersIndex
 @{
     ViewBag.Title = "Index";
+
 }
 <div class="row mt-5 mb-5">
     <div class="col-12">
@@ -22,15 +23,21 @@
                         @foreach (var user in Model.Users)
                         {
                         <tr>
-                            <th scope="row">@user.ID</th>
-                            <td>@user.username</td>
-                            <td>@user.email</td>
-                            <td>@user.password</td>
-                            <td>{todo}</td>
+                            <th scope="row">@user.Id</th>
+                            <td>@user.Username</td>
+                            <td>@user.Email</td>
+                            <td>@user.PasswordHash</td>
+                            <td>@String.Join(", ", user.Roles.Select(role => role.name))</td>
                             <td class="pull-left" style="height:26px;">
-                                <button class="btn btn-flat btn-success" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-settings" style="color:yellow;">  </i>DÜZENLE</button>
-                                <button class="btn btn-flat btn-light" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-pin" style="color:blue;">  </i>PAROLA DEĞİŞTİR</button>
-                                <button class="btn btn-flat btn-warning" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-trash" style="color:black;">  </i>SİL</button>
+                                <i class="ti - settings" style="color: yellow; "></i>
+                                    @Html.ActionLink("DÜZENLE", "EditUser", new { user.Id }, new { @class = "btn btn-flat btn-success", data_icon = "ti-settings", style = "margin-right:0; height:26px; padding-top:4px;" })
+                                
+                                    <a href="" class="btn btn-flat btn-light" style="margin-right:0; height:26px; padding-top:4px;">
+                                    <i class="ti-pin" style="color:blue;">  </i>PAROLA DEĞİŞTİR
+                                </a>
+                                <a href="" class="btn btn-flat btn-warning" style="margin-right:0; height:26px; padding-top:4px;">
+                                    <i class="ti-trash" style="color:black;">  </i>SİL
+                                </a>
                             </td>
                         </tr>
                         }

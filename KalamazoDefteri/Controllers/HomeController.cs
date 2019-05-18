@@ -9,9 +9,13 @@ namespace KalamazoDefteri.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        //[Authorize(Roles = "user")]
         public ActionResult Index()
         {
-            return View();
+            if (HttpContext.User.IsInRole("admin"))
+                return RedirectToAction("Index", "Users", new { area = "Admin" });
+            else
+                return View();
         }
     }
 }

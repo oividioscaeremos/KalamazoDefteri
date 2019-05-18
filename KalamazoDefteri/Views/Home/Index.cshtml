@@ -4,4 +4,7 @@
 }
 
 <h2>Index Action of The HomeController</h2>
+@(User.Identity.IsAuthenticated ? "Logged in" : "Not logged in")
+@(User.IsInRole("admin") ? "Logged in" : "Not logged in")
 
+@User.IsInRole("user")

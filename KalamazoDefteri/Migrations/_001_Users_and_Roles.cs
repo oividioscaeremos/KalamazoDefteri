@@ -27,7 +27,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("userName").AsString(50)
                 .WithColumn("eMail").AsString(50)
-                .WithColumn("password_hash").AsString(25);
+                .WithColumn("password_hash").AsString(256);
 
             Create.Table("companies")
                 .WithColumn("companyID").AsInt32().Identity().PrimaryKey()

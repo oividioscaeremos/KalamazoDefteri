@@ -16,9 +16,6 @@ namespace KalamazoDefteri
             routes.MapRoute("Home", "", 
                 new { controller = "Home", action = "Index" }
                 );
-            routes.MapRoute("HomePath", "index",
-                new { controller = "Home", action = "Index" }
-                );
             routes.MapRoute("Firmalar", "firmalar",
                new { controller = "Firmalar", action = "Index" }
                );

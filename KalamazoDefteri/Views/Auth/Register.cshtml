@@ -1,4 +1,4 @@
-﻿@model KalamazoDefteri.ViewModels.AuthLogin
+﻿@model KalamazoDefteri.ViewModels.AuthRegister
 
 @using System.Web.Optimization
 @{
@@ -36,7 +36,10 @@
                         <h4>KAYDOL</h4>
                         <p>Sisteme Giriş için Kaydolun.</p>
                     </div>
+                    @Html.ValidationSummary()
+
                     <div class="login-form-body">
+
                         <div class="form-gp exampleInputEmail1">
                             @Html.LabelFor(x => x.username)
                             @Html.EditorFor(x => x.username)

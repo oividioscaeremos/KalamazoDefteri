@@ -25,7 +25,7 @@ namespace KalamazoDefteri.Models
             Table("outgoings");
             Schema("kalamazodefteri");
             Lazy(true);
-            Id(x => x.Outgoingid, map => map.Generator(Generators.Assigned));
+            Id(x => x.Outgoingid, map => map.Generator(Generators.Identity));
             Property(x => x.Date, map => map.NotNullable(true));
             Property(x => x.Explanation, map => map.NotNullable(true));
             Property(x => x.Payment, map => map.NotNullable(true));

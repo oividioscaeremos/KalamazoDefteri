@@ -36,7 +36,7 @@ namespace KalamazoDefteri.Infrastructures
 
         public override string[] GetRolesForUser(string username)
         {
-            return new string[] { "admin" };
+            return Auth.User.Roles.Select(p => p.name).ToArray();
         }
 
         public override string[] GetUsersInRole(string roleName)
