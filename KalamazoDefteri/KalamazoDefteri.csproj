@@ -128,6 +128,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Controllers\Scripts\Form.js" />
     <Content Include="Content\css\bootstrap-grid.css" />
     <Content Include="Content\css\bootstrap-grid.min.css" />
     <Content Include="Content\css\bootstrap-reboot.css" />
@@ -146,6 +147,7 @@
     <Content Include="Content\css\typography.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\themify.svg" />
+    <Content Include="Content\images\admin-panel.jpg" />
     <Content Include="Content\images\author\author-img1.jpg" />
     <Content Include="Content\images\author\author-img2.jpg" />
     <Content Include="Content\images\author\author-img3.jpg" />
@@ -175,6 +177,7 @@
     <Content Include="Content\images\icon\market-value\trends-up-icon.png" />
     <Content Include="Content\images\icon\market-value\triangle-down.png" />
     <Content Include="Content\images\icon\market-value\triangle-up.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\media\media1.jpg" />
     <Content Include="Content\images\media\media2.jpg" />
     <Content Include="Content\images\team\team-author1.jpg" />
@@ -257,6 +260,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Auth.cs" />
+    <Compile Include="ViewModels\Companies.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -264,6 +268,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Views\Shared\_RoleEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\ResetPassword.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

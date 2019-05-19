@@ -54,6 +54,7 @@ namespace KalamazoDefteri.App_Start
                 .Include("~/Content/js/scripts.js")
                 .Include("~/Content/js/serial.js")
                 .Include("~/Content/js/worldLow.js")
+                .Include("~/Areas/Admin/Controllers/Scripts/Form.js")
                 );
 
         }

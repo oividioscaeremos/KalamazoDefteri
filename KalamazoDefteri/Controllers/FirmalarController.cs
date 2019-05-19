@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KalamazoDefteri.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace KalamazoDefteri.Controllers
         // GET: Firmalar
         public ActionResult Index()
         {
-            return View();
+            return View(new CompaniesIndex {
+                ourCompanies = Database.Session.Query<Models.Companies>().ToList()
+            });
         }
 
         public ActionResult Income()

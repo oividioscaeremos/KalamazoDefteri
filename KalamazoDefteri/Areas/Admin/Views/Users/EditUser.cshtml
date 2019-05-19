@@ -10,6 +10,7 @@
                 <h4 class="header-title">@Model.username</h4>
                 <form>
                     <div class="form-row align-items-center">
+                        @Html.ValidationSummary()
                         <div class="col-sm-3 my-1">
                             @Html.LabelFor(u => u.username, new { @class = "sr-only" })
                             <div class="input-group">

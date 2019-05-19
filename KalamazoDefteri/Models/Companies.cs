@@ -9,7 +9,7 @@ namespace KalamazoDefteri.Models
 {
     public class Companies
     {
-        public Companies() { }
+        public virtual User belongsToUser { get; set; }
         public virtual int Companyid { get; set; }
         public virtual string Companyname { get; set; }
         public virtual string Address { get; set; }
@@ -18,10 +18,9 @@ namespace KalamazoDefteri.Models
         public virtual string Taxadministration { get; set; }
         public virtual string Iban { get; set; }
         public virtual int Balance { get; set; }
-
     }
 
-    public class CompaniesMap : ClassMapping<Companies>
+    public class CompaniesMap : ClassMapping<Models.Companies>
     {
 
         public CompaniesMap()
@@ -29,6 +28,12 @@ namespace KalamazoDefteri.Models
             Table("companies");
             Schema("kalamazodefteri");
             Lazy(true);
+            
+            ManyToOne(x => x.belongsToUser, x => {
+                x.Column("userID");
+                x.NotNullable(true);
+            });
+
             Id(x => x.Companyid, map => map.Generator(Generators.Identity));
             Property(x => x.Companyname, map => map.NotNullable(true));
             Property(x => x.Address, map => map.NotNullable(true));
@@ -37,6 +42,9 @@ namespace KalamazoDefteri.Models
             Property(x => x.Taxadministration, map => map.NotNullable(true));
             Property(x => x.Iban, map => map.NotNullable(true));
             Property(x => x.Balance, map => map.NotNullable(true));
+
+
+            
         }
     }
 }

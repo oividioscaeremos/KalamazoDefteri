@@ -29,8 +29,8 @@ namespace KalamazoDefteri.Models
             Property(x => x.Date, map => map.NotNullable(true));
             Property(x => x.Explanation, map => map.NotNullable(true));
             Property(x => x.Payment, map => map.NotNullable(true));
-            ManyToOne(x => x.Users, map => { map.Column("userID"); map.Cascade(Cascade.None); });
 
+            ManyToOne(x => x.Users, map => { map.Column("userID"); map.Cascade(Cascade.None); });
             ManyToOne(x => x.Companies, map => { map.Column("companyID"); map.Cascade(Cascade.None); });
 
         }

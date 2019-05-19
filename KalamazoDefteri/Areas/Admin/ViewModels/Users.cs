@@ -25,7 +25,23 @@ namespace KalamazoDefteri.Areas.Admin.ViewModels
         public IList<RoleCheckBox> Roles { get; set; }
 
     }
+    public class UsersResetPassword
+    {
+        [DataType(DataType.Text)]
+        [Display(Prompt = "Username")]
+        public string username { get; set; }
 
+        [Required(ErrorMessage = "Değiştirilecek bir şifre girmeniz gerekmekte.")]
+        [StringLength(255, ErrorMessage = "Girdiğiniz şifre çok uzun veya çok kısa. Minimum 5 karakter ve maksimum 256 karakter bir şifre giriniz.", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Şifreyi onaylamak için tekrar girmeniz gerekmekte.")]
+        [StringLength(255, ErrorMessage = "Girdiğiniz şifre çok uzun veya çok kısa. Minimum 5 karakter ve maksimum 256 karakter bir şifre giriniz.", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Girdiğiniz şifreler uyuşmuyor.")]
+        public string ConfirmPassword { get; set; }
+    }
     public class RoleCheckBox
     {
         public int Id { get; set; }

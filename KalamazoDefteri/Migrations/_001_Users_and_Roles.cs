@@ -30,6 +30,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("password_hash").AsString(256);
 
             Create.Table("companies")
+                .WithColumn("userID").AsInt32().ForeignKey("users", "Id").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("companyID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("companyName").AsString(128)
                 .WithColumn("address").AsString(256)

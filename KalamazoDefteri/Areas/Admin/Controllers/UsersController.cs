@@ -3,6 +3,8 @@ using KalamazoDefteri.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -80,6 +82,47 @@ namespace KalamazoDefteri.Areas.Admin.Controllers
             user.Email = form.email;
             SyncRoles(form.Roles,user.Roles);
             Database.Session.Update(user);
+            Database.Session.Flush();
+
+            return RedirectToAction("index");
+        }
+
+        public ActionResult ResetPassword(int id)
+        {
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+                return HttpNotFound();
+
+            return View(new UsersResetPassword {
+                username = user.Username
+            });
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(int id, UsersResetPassword form)
+        {
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+                return HttpNotFound();            
+
+            if (!ModelState.IsValid)
+                return View(form);
+
+            user.SetPassword(form.Password);
+            var asd = Guid.NewGuid();
+            Database.Session.Update(user);
+            Database.Session.Flush();
+
+            return RedirectToAction("index");
+        }
+        
+        [HttpPost]
+        public ActionResult DeleteAcc(int id)
+        {
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+                return HttpNotFound();
+            Database.Session.Delete(user);
             Database.Session.Flush();
 
             return RedirectToAction("index");

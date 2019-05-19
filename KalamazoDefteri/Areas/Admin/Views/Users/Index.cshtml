@@ -29,28 +29,17 @@
                             <td>@user.PasswordHash</td>
                             <td>@String.Join(", ", user.Roles.Select(role => role.name))</td>
                             <td class="pull-left" style="height:26px;">
-                                <i class="ti - settings" style="color: yellow; "></i>
-                                    @Html.ActionLink("DÜZENLE", "EditUser", new { user.Id }, new { @class = "btn btn-flat btn-success", data_icon = "ti-settings", style = "margin-right:0; height:26px; padding-top:4px;" })
+                                    @*@Html.ActionLink("DÜZENLE", "EditUser", new { user.Id }, new { @class = "btn btn-flat btn-success", data_icon = "ti-settings", style = "margin-right:0; height:26px; padding-top:4px;" })
+                                    @Html.ActionLink("PAROLA DEĞİŞTİR", "ResetPassword", new { user.Id }, new { @class = "btn btn-flat btn-danger", data_icon = "ti-pin", style = "margin-right:0; height:26px; padding-top:4px;" })
+                                    @Html.ActionLink("SİL", "DeleteAcc", new { user.Id }, new { @class = "btn btn-flat btn-warning", data_icon = "ti-pin", style = "margin-right:0; height:26px; padding-top:4px;" })*@
+                                    <a href="@Url.Action("EditUser",new { user.Id})" class="btn btn-flat btn-success" style = "margin-right:0; height:26px; padding-top:4px;"><i class="ti-user"></i> DÜZENLE</a>
+                                    <a href="@Url.Action("ResetPassword",new { user.Id})"  class="btn btn-flat btn-danger" style = "margin-right:0; height:26px; padding-top:4px;"><i class="ti-settings"></i> PAROLA SIFIRLA</a>
+                                    <a href="@Url.Action("DeleteAcc",new { user.Id})" data-post="@user.Username Kullanıcısını Silmek İstediğinize Emin Misiniz?" class="btn btn-flat btn-warning" style = "margin-right:0; height:26px; padding-top:4px;"><i class="ti-trash"></i> SİL</a>
+
                                 
-                                    <a href="" class="btn btn-flat btn-light" style="margin-right:0; height:26px; padding-top:4px;">
-                                    <i class="ti-pin" style="color:blue;">  </i>PAROLA DEĞİŞTİR
-                                </a>
-                                <a href="" class="btn btn-flat btn-warning" style="margin-right:0; height:26px; padding-top:4px;">
-                                    <i class="ti-trash" style="color:black;">  </i>SİL
-                                </a>
                             </td>
                         </tr>
                         }
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-flat btn-primary pull-right" style="margin-right:0;"><i class="ti-plus" style="color:yellow;">  </i> YENI KULLANICI OLUSTUR</button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
