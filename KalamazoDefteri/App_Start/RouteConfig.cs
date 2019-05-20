@@ -35,6 +35,10 @@ namespace KalamazoDefteri
                 new { controller = "Auth", action = "Register" }
                 );
 
+            routes.MapRoute("CompanyView", "companyView",
+                new { controller = "Firmalar", action = "CompanyView" }
+                );
+
 
         }
     }

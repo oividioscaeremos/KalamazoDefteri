@@ -278,6 +278,7 @@
     <Content Include="Views\Firmalar\Index.cshtml" />
     <Content Include="Views\Firmalar\Outgoing.cshtml" />
     <Content Include="Views\Firmalar\Income.cshtml" />
+    <Content Include="Views\Firmalar\CompanyView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

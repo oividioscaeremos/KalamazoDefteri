@@ -38,8 +38,7 @@
                                     <td>@company.Phonenumber</td>
                                     <td>@company.Balance</td>
                                     <td class="pull-left" style="height:26px;">
-                                        
-                                        <a href="#" class="btn btn-flat btn-success" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-user"></i> DÜZENLE</a>
+                                        @Html.RouteLink("GÖRÜNTÜLE ve DÜZENLE", "CompanyView", new {id = company.Companyid}, new { @class = "btn btn-flat btn-success", style = "margin-right:0; height:26px; padding-top:4px;"})
                                         <a href="#" class="btn btn-flat btn-danger" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-settings"></i> PAROLA SIFIRLA</a>
                                         <a href="#" data-post=" Kullanıcısını Silmek İstediğinize Emin Misiniz?" class="btn btn-flat btn-warning" style="margin-right:0; height:26px; padding-top:4px;"><i class="ti-trash"></i> SİL</a>
 

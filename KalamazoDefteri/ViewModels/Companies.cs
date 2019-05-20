@@ -12,6 +12,11 @@ namespace KalamazoDefteri.ViewModels
             public IEnumerable<Companies> ourCompanies { get; set; }
     }
 
+    public class CompaniesViewOne
+    {
+        public Models.Companies ourCompany { get; set; }
+    }
+
     public class CompaniesNew
     {
         [Required(ErrorMessage = "Firma adı boş bırakılamaz.")]
