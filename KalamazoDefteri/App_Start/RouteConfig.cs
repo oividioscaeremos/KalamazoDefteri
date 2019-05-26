@@ -19,11 +19,17 @@ namespace KalamazoDefteri
             routes.MapRoute("Firmalar", "firmalar",
                new { controller = "Firmalar", action = "Index" }
                );
+            routes.MapRoute("YeniFirma", "yeni-firma",
+               new { controller = "Firmalar", action = "NewCompany" }
+               );
             routes.MapRoute("Income", "income",
-               new { controller = "Firmalar", action = "Income" }
+               new { controller = "Monetary", action = "IncomeIndex" }
                );
             routes.MapRoute("Outgoing", "outgoing",
-               new { controller = "Firmalar", action = "Outgoing" }
+               new { controller = "Monetary", action = "OutgoingIndex" }
+               );
+            routes.MapRoute("CreateNewIncome", "new-income",
+               new { controller = "Monetary", action = "NewIncome" }
                );
             routes.MapRoute("Login", "login", 
                 new { controller = "Auth", action = "Login" }
@@ -34,9 +40,11 @@ namespace KalamazoDefteri
             routes.MapRoute("Register", "register",
                 new { controller = "Auth", action = "Register" }
                 );
-
             routes.MapRoute("CompanyView", "companyView",
                 new { controller = "Firmalar", action = "CompanyView" }
+                );
+            routes.MapRoute("CompanyDelete", "delete-company",
+                new { controller = "Firmalar", action = "DeleteCompany" }
                 );
 
 

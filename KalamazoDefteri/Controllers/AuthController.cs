@@ -37,15 +37,20 @@ namespace KalamazoDefteri.Controllers
             
             FormsAuthentication.SetAuthCookie(form.username, true);
 
-            if (!String.IsNullOrWhiteSpace(returnUrl))
+            if (HttpContext.User.IsInRole("admin"))
             {
-                return Redirect(returnUrl);
+                return RedirectToAction("Index", "Users", new { area = "Admin" });
             }
+            else
+            {
+                if (!String.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
 
 
-            return RedirectToRoute("Home");
-
-
+                return RedirectToRoute("Home", user.Id);
+            }          
         }
 
         public ActionResult Logout()
@@ -86,11 +91,10 @@ namespace KalamazoDefteri.Controllers
                 Username = form.username                
             };
             
-            setUserRole("user",user.Roles);
+            setUserRole("admin",user.Roles);
 
             user.SetPassword(form.password);
             
-            var deneme = user;
 
             Database.Session.Save(user);
             Database.Session.Flush();

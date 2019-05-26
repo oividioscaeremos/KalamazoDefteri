@@ -9,13 +9,11 @@ namespace KalamazoDefteri.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        //[Authorize(Roles = "user")]
+        [Authorize(Roles = "user")]
         public ActionResult Index()
         {
-            if (HttpContext.User.IsInRole("admin"))
-                return RedirectToAction("Index", "Users", new { area = "Admin" });
-            else
-                return View();
+            //var userid = Database.Session.Load<Models.User>(userData[0].Id);
+            return View();
         }
     }
 }

@@ -1,13 +1,18 @@
 ﻿@using System.Web.Optimization
-<!doctype html>
+    @{ 
+        var userData = Database.Session.Query<KalamazoDefteri.Models.User>().Where(u => u.Username == Html.ViewContext.HttpContext.User.Identity.Name).ToList();
+
+    }
+    <!doctype html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewBag.title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="../../Content/images/icon/favicon.ico">    
+    <link rel="shortcut icon" type="image/png" href="../../Content/images/icon/favicon.ico">
     @Styles.Render("~/projStyles")
+    
 </head>
 <body class="body-bg">
     <!--[if lt IE 8]>
@@ -41,9 +46,9 @@
                                         ">
                                         <i class="ti-power-off"></i>
                                     </li>
-</ul>                           </a>
+                            </ul>                           </a>
                         </div>
-                        <div class="clearfix d-md-inline-block d-block">                            
+                        <div class="clearfix d-md-inline-block d-block">
                             <div class="user-profile m-0">
                                 <img class="avatar user-thumb" src="../../Content/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name">
@@ -74,14 +79,14 @@
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Home") && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
                                         <a href="@Url.RouteUrl("Home")"><i class="ti-home"></i> Ana Sayfa</a>
                                     </li>
-                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("firmalar","Index")"><i class="ti-list"></i> Firmalar</a>
+                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar")) ? "active" : "")">
+                                        <a href="@Url.RouteUrl("Firmalar", new { userData[0].Id })"><i class="ti-list"></i> Firmalar</a>
                                     </li>
-                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Income") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("income")"><i class="ti-arrow-down"></i> Gelirler</a>
+                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Monetary") && ViewContext.RouteData.Values["Action"].ToString() == "IncomeIndex") ? "active" : "")">
+                                        <a href="@Url.RouteUrl("income", new { userData[0].Id})"><i class="ti-arrow-down"></i> Gelirler</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Outgoing") ? "active" : "")">
-                                        <a href="@Url.RouteUrl("outgoing")"><i class="ti-arrow-up"></i> Giderler</a>
+                                        <a href="@Url.RouteUrl("outgoing", new { userData[0].Id})"><i class="ti-arrow-up"></i> Giderler</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -123,7 +128,18 @@
     </div>
     <!-- main wrapper start -->
     <!-- jquery latest version -->
+    <!-- Example jQuery Masking Script -->
+    
     @Scripts.Render("~/projScripts");
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            $('#phoneNumber').inputmask("+\\90(999)999-99-99");
+            $('#faxNumber').inputmask("+\\90(999)999-99-99");
+            $('#IBAN').inputmask('TR 99 9999 9999 9999 9999 99', {
+                placeholder: ' ____ ____ ____ ____ ____ __'
+            });
+        });
+    </script>
     <!-- start chart js -->
 </body>
 </html>

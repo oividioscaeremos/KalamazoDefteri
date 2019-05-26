@@ -27,6 +27,10 @@ namespace KalamazoDefteri.App_Start
                 .Include("~/Content/css/themify-icons.css")
                 .Include("~/Content/css/typography.css")
                 .Include("~/Content/css/export.css")
+                .Include("~/Content/css/dataTables.bootstrap4.min.css")
+                .Include("~/Content/css/jquery.dataTables.css")
+                .Include("~/Content/css/responsive.bootstrap.min.css")
+                .Include("~/Content/css/responsive.jqueryui.min.css")
                 );
 
             //bundles.Add(new ScriptBundle("~/projScripts").IncludeDirectory("~/Content/js", "*.js", true));
@@ -54,8 +58,17 @@ namespace KalamazoDefteri.App_Start
                 .Include("~/Content/js/scripts.js")
                 .Include("~/Content/js/serial.js")
                 .Include("~/Content/js/worldLow.js")
+                .Include("~/Content/js/datatable.js")
+                .Include("~/Content/js/dataTables.min.js")
+                .Include("~/Content/js/dataTables-responsive.min.js")
+                .Include("~/Content/js/dataTables.bootstrap4.min.js")
+                .Include("~/Content/js/responsive.bootstrap.min.js")
                 .Include("~/Areas/Admin/Controllers/Scripts/Form.js")
-                );
+                .Include("~/Content/js/inputmask/inputmask.js",
+                "~/Content/js/inputmask/jquery.inputmask.js",
+                "~/Content/js/inputmask/inputmask.extensions.js",
+                "~/Content/js/inputmask/inputmask.date.extensions.js",
+                "~/Content/js/inputmask/inputmask.numeric.extensions.js"));
 
         }
     }

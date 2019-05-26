@@ -1,4 +1,5 @@
-﻿using KalamazoDefteri.Models;
+﻿using KalamazoDefteri.Infrastructures;
+using KalamazoDefteri.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ namespace KalamazoDefteri.ViewModels
 {
     public class CompaniesIndex
     {       
-            public IEnumerable<Companies> ourCompanies { get; set; }
+            public PagedData<Companies> ourCompanies { get; set; }
     }
 
     public class CompaniesViewOne

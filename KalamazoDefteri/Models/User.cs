@@ -12,6 +12,7 @@ namespace KalamazoDefteri.Models
         public virtual int Id { get; set; }
         public virtual string Username { get; set; }
         public virtual string Email { get; set; }
+        public virtual int Balance { get; set; }
         public virtual string PasswordHash { get; set; }
         public virtual IList<Roles> Roles { get; set; }
 
@@ -43,6 +44,7 @@ namespace KalamazoDefteri.Models
             Id(x => x.Id, map => map.Generator(Generators.Identity));
             Property(x => x.Username, map => map.NotNullable(true));
             Property(x => x.Email, map => map.NotNullable(true));
+            Property(x => x.Balance, map => map.NotNullable(true));
             Property(x => x.PasswordHash, map => { map.Column("password_hash"); map.NotNullable(true); });
 
             Bag(x => x.Roles, x => {
