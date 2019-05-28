@@ -34,6 +34,9 @@ namespace KalamazoDefteri
             routes.MapRoute("DeleteIncome", "delete-income",
                new { controller = "Monetary", action = "DeleteIncome" }
                );
+            routes.MapRoute("CreateNewOutgoing", "new-outgoing",
+               new { controller = "Monetary", action = "NewOutgoing" }
+               );
             routes.MapRoute("Login", "login", 
                 new { controller = "Auth", action = "Login" }
                 );

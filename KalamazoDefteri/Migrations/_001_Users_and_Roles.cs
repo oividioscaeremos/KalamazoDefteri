@@ -47,7 +47,8 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("date").AsDate()
                 .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("explanation").AsString(512)
-                .WithColumn("payment").AsInt32();
+                .WithColumn("payment").AsInt32()
+                .WithColumn("isAdded").AsString(1);
 
             Create.Table("outgoings")
                 .WithColumn("userID").AsInt32().ForeignKey("users","ID").OnDelete(System.Data.Rule.Cascade)
@@ -55,7 +56,8 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("date").AsDate()
                 .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade)
                 .WithColumn("explanation").AsString(512)
-                .WithColumn("payment").AsInt32();
+                .WithColumn("payment").AsInt32()
+                .WithColumn("isDecreased").AsString(1);
 
             Create.Table("roles")
                 .WithColumn("id").AsInt32().Identity().PrimaryKey()

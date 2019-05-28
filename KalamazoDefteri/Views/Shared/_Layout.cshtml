@@ -82,10 +82,10 @@
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar")) ? "active" : "")">
                                         <a href="@Url.RouteUrl("Firmalar", new { userData[0].Id })"><i class="ti-list"></i> Firmalar</a>
                                     </li>
-                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Monetary") && ViewContext.RouteData.Values["Action"].ToString() == "IncomeIndex") ? "active" : "")">
+                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Monetary") && (ViewContext.RouteData.Values["Action"].ToString() == "NewIncome" || ViewContext.RouteData.Values["Action"].ToString() == "IncomeIndex")) ? "active" : "")">
                                         <a href="@Url.RouteUrl("income", new { userData[0].Id})"><i class="ti-arrow-down"></i> Gelirler</a>
                                     </li>
-                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar") && ViewContext.RouteData.Values["Action"].ToString() == "Outgoing") ? "active" : "")">
+                                    <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Monetary") && (ViewContext.RouteData.Values["Action"].ToString() == "NewOutgoing" || ViewContext.RouteData.Values["Action"].ToString() == "OutgoingIndex")) ? "active" : "")">
                                         <a href="@Url.RouteUrl("outgoing", new { userData[0].Id})"><i class="ti-arrow-up"></i> Giderler</a>
                                     </li>
                                 </ul>

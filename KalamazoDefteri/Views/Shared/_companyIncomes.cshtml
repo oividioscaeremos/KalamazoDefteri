@@ -1,6 +1,7 @@
 ﻿@model KalamazoDefteri.ViewModels.CompaniesViewOne
 @{
     ViewBag.Title = "_companyIncomes";
+    var sum = 0;
 }
 <div class="table-responsive">
     <table class="table table-sm">
@@ -16,6 +17,7 @@
         <tbody>
             @foreach (var income in (Database.Session.Query<KalamazoDefteri.Models.Incomings>().Where(i => i.Companies.Companyid == Model.ourCompany.Companyid).ToList()))
             {
+                sum += income.Payment;
                 <tr>
                     <th scope="row">@income.Incomeid</th>
                     <td>@income.Date</td>
@@ -23,6 +25,11 @@
                     <td>@income.Payment</td>
                     <td>
                         <i class="fa fa-@(income.Date.CompareTo(DateTime.Now) > 0 ? "money" : "check")"></i>
+                        <a href="@Url.Action("DeleteIncome","Monetary",new { id = income.Incomeid, from = income.Users.Id})"
+                           data-post="Gideri Silmek İstediğinize Emin Misiniz? (Bakiyenizde değişiklik yaratacaktır.)"
+                           style="height:26px; padding-top:4px;">
+                            <i class="ti-trash"></i>
+                        </a>
                     </td>
                 </tr>
             }
@@ -30,10 +37,7 @@
                 <th scope="row"></th>
                 <td></td>
                 <td style="text-align:right;">Toplam Gelir : </td>
-                <td>@(Database.Session.Query<KalamazoDefteri.Models.Incomings>()
-                                        .Where(i => i.Companies.Companyid == Model.ourCompany.Companyid)
-                                        .Select(i => i.Payment)
-                                        .Sum())</td>
+                <td>@(sum)</td>
                 <td></td>
             </tr>
         </tbody>

@@ -317,6 +317,7 @@
     <Content Include="Views\Monetary\NewIncome.cshtml" />
     <Content Include="Views\Shared\_companyIncomes.cshtml" />
     <Content Include="Views\Shared\_companyOutgoing.cshtml" />
+    <Content Include="Views\Monetary\NewOutgoing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -327,6 +328,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

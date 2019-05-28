@@ -52,8 +52,28 @@ namespace KalamazoDefteri.ViewModels
         [Required]
         public int Payment { get; set; }
 
-        public IEnumerable<Companies> allCompanies { get; set; }
-
+        public IEnumerable<Incomings> allIncomings { get; set; }
     }
-    
+
+    public class Outgoing
+    {
+        [Required]
+        public int selectedSirketID { get; set; }
+        public SelectList sirketler { get; set; }
+        public int Incomeid { get; set; }
+        public User Owner { get; set; }
+        public Companies Companies { get; set; }
+
+        [Required(ErrorMessage = "Tarih alanı boş bırakılamaz.")]
+        public DateTime Date { get; set; }
+
+        [Required]
+        public string Explanation { get; set; }
+
+        [Required]
+        public int Payment { get; set; }
+
+        public IEnumerable<Outgoings> allOutgoings { get; set; }
+    }
+
 }

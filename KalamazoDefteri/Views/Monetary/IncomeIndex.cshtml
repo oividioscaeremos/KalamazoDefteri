@@ -1,4 +1,4 @@
-﻿@model KalamazoDefteri.ViewModels.Monetary
+﻿@model KalamazoDefteri.ViewModels.Income
 @{
     ViewBag.Title = "IncomeIndex";
 }
@@ -6,7 +6,7 @@
 <div class="col-12 mt-5">
     <div class="card">
         <div class="card-body">
-            <h4 class="header-title">Striped Rows</h4>
+            <h4 class="header-title">TÜM GELİRLER</h4>
             <div class="single-table">
                 <div class="table-responsive">
                     <table class="table table-striped text-center">
@@ -21,15 +21,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var income in Model.ourCompanies)
+                            @foreach (var income in Model.allIncomings)
                             {
                                 <tr>
-                                    <th scope="row">@income.Incomeid</th>
-                                    <td>@income.Companies.Companyname</td>
-                                    <td>@income.Explanation</td>
-                                    <td>@income.Date.ToString("dd/MM/yyyy")</td>
-                                    <td>@income.Payment</td>
-                                    <td>
+                                    <th style="text-align:center; vertical-align:middle;" scope="row">@income.Incomeid</th>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Companies.Companyname</td>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Explanation</td>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Date.ToString("dd/MM/yyyy")</td>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Payment</td>
+                                    <td style="text-align:center; vertical-align:middle;">
                                         <a href="@Url.Action("DeleteIncome","Monetary",new { id = income.Incomeid })"
                                            class="btn btn-flat btn-danger"
                                            data-post="Geliri Silmek İstediğinize Emin Misiniz?"

@@ -1,4 +1,4 @@
-﻿@model KalamazoDefteri.ViewModels.Income
+﻿@model KalamazoDefteri.ViewModels.Outgoing
 @{
     ViewBag.Title = "Yeni Girdi";
 }
@@ -6,13 +6,13 @@
 <div class="col-12">
     <div class="card mt-5">
         <div class="card-body">
-            <h4 class="header-title">YENİ GİRDİ EKLE</h4>
-            @using (Html.BeginForm("NewIncome","Monetary",FormMethod.Post))
+            <h4 class="header-title">YENİ GİDER EKLE</h4>
+            @using (Html.BeginForm("NewOutgoing", "Monetary", FormMethod.Post))
             {
                 @Html.ValidationSummary()
                 <div class="form-group">
                     <label for="example-text-input" class="col-form-label">Firma Adı:</label>
-                    @Html.DropDownListFor(u => u.selectedSirketID, new SelectList(Model.sirketler.Items, "Companyid", "Companyname", 1), "Bir firma seçiniz.", new { @class = "custom-select", placeholder = "Bir Firma Seçin." })
+                    @Html.DropDownListFor(u => u.selectedSirketID, new SelectList(Model.sirketler.Items, "Companyid", "Companyname", 1), "Bir firma seçiniz.", new { @class = "custom-select"})
 
                 </div>
                 <div class="form-group" style="width: 15%;">
@@ -36,11 +36,13 @@
                     </div>
                     @Html.TextAreaFor(u => u.Explanation, new { @class = "form-control", style = "height: 209px;" })
                 </div>
-                <button type="submit" class="btn btn-flat btn-primary btn-lg btn-block" style="font-weight:bolder">YENI GIRDI EKLE</button>
+                <button type="submit" class="btn btn-flat btn-primary btn-lg btn-block" style="font-weight:bolder">YENI GIDER EKLE</button>
             }
             <br />
-            <center>veya <a href="@Url.Action("IncomeIndex", new { id = (Database.Session.Query<KalamazoDefteri.Models.User>()
-                                                                            .FirstOrDefault(u => u.Username == HttpContext.Current.User.Identity.Name).Id)}))"> Vazgeç</a></center>
+            <center>veya <a href="@Url.Action("OutgoingIndex", new { id = (Database.Session.Query<KalamazoDefteri.Models.User>()
+                                                                            .FirstOrDefault(u => u.Username == HttpContext.Current.User.Identity.Name).Id)})">
+                          Vazgeç</a>
+            </center>
         </div>
     </div>
 </div>
