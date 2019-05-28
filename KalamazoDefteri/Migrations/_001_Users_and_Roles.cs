@@ -35,11 +35,11 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("companyID").AsInt32().Identity().PrimaryKey()
                 .WithColumn("companyName").AsString(128)
                 .WithColumn("address").AsString(256)
-                .WithColumn("phoneNumber").AsString(15) 
-                .WithColumn("faxNumber").AsString(15)
+                .WithColumn("phoneNumber").AsString(20) 
+                .WithColumn("faxNumber").AsString(20)
                 .WithColumn("TaxAdministration").AsString(15)
                 .WithColumn("IBAN").AsString(32)
-                .WithColumn("balance").AsInt32(); // longest IBAN belongs to Saint Lucia
+                .WithColumn("balance").AsInt32(); 
 
             Create.Table("income")
                 .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade)

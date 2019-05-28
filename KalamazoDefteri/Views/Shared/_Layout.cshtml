@@ -133,6 +133,7 @@
     @Scripts.Render("~/projScripts");
     <script type="text/javascript">
         $(document).ready(function ($) {
+            $('#tarihSecimi').minDate(new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000)));
             $('#phoneNumber').inputmask("+\\90(999)999-99-99");
             $('#faxNumber').inputmask("+\\90(999)999-99-99");
             $('#IBAN').inputmask('TR 99 9999 9999 9999 9999 99', {

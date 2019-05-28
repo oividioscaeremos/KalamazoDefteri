@@ -23,17 +23,27 @@ namespace KalamazoDefteri.ViewModels
         [Required(ErrorMessage = "Firma adı boş bırakılamaz.")]
         [DataType(DataType.Text)]
         public string companyMame { get; set; }
+
         [Required(ErrorMessage = "Firma adresi boş bırakılamaz.")]
         [DataType(DataType.Text)]
         public string address { get; set; }
+
         [DataType(DataType.PhoneNumber)]
+        [Required(ErrorMessage = "Telefon Numarası boş bırakılamaz. (boş bırakmak için '-' ile doldurabilirsiniz.)")]
         public string phoneNumber { get; set; }
+
         [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Fax Numarası boş bırakılamaz. (boş bırakmak için '-' ile doldurabilirsiniz.)")]
         public string faxNumber { get; set; }
+
         [DataType(DataType.Text)]
+        [Required(ErrorMessage = "V.D. boş bırakılamaz. (boş bırakmak için '-' ile doldurabilirsiniz.)")]
         public string TaxAdministration { get; set; }
+
+        [Required(ErrorMessage = "IBAN boş bırakılamaz. (boş bırakmak için '-' ile doldurabilirsiniz.)")]
         [DataType(DataType.Text)]
         public string IBAN { get; set; }
+
         [Required(ErrorMessage = "Başlangıç için firmaya bir bakiye girmeniz gerekmekte. (Yok ise 0 (sıfır) girebilirsiniz.")]
         public int balance { get; set; }
     }

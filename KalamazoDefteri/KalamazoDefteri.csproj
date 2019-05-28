@@ -201,6 +201,7 @@
     <Content Include="Content\js\export-data.js" />
     <Content Include="Content\js\export.min.js" />
     <Content Include="Content\js\exporting.js" />
+    <Content Include="Content\js\FormMonetary.js" />
     <Content Include="Content\js\jquery.slicknav.min.js" />
     <Content Include="Content\js\jquery.slimscroll.min.js" />
     <Content Include="Content\js\light.js" />
@@ -314,6 +315,8 @@
     <Content Include="Views\Monetary\OutgoingIndex.cshtml" />
     <Content Include="Views\Firmalar\NewCompany.cshtml" />
     <Content Include="Views\Monetary\NewIncome.cshtml" />
+    <Content Include="Views\Shared\_companyIncomes.cshtml" />
+    <Content Include="Views\Shared\_companyOutgoing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

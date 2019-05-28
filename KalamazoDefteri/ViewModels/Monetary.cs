@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,14 +36,22 @@ namespace KalamazoDefteri.ViewModels
 
     public class Income
     {
+        [Required]
         public int selectedSirketID { get; set; }
         public SelectList sirketler { get; set; }
         public int Incomeid { get; set; }
         public User Owner { get; set; }
         public Companies Companies { get; set; }
+
+        [Required(ErrorMessage ="Tarih alanı boş bırakılamaz.")]
         public DateTime Date { get; set; }
+
+        [Required]
         public string Explanation { get; set; }
+
+        [Required]
         public int Payment { get; set; }
+
         public IEnumerable<Companies> allCompanies { get; set; }
 
     }

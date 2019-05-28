@@ -1,0 +1,33 @@
+﻿@model KalamazoDefteri.ViewModels.CompaniesViewOne
+@{
+    ViewBag.Title = "_companyIncomes";
+}
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">GİDER ID</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Gelir Tutarı</th>
+                <th scope="col">Ödendi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var outgoing in (Database.Session.Query<KalamazoDefteri.Models.Outgoings>().Where(i => i.Companies.Companyid == Model.ourCompany.Companyid).ToList()))
+            {
+                <tr>
+                    <th scope="row">@outgoing.Outgoingid</th>
+                    <td>@outgoing.Date</td>
+                    <td>@outgoing.Explanation</td>
+                    <td>@outgoing.Payment</td>
+                    <td>
+                        <a href="@Url.Action("Index", new { id = Model.ourCompany.belongsToUser.Id})">
+                            <i class="fa fa-@(outgoing.Date.CompareTo(DateTime.Now) > 0 ? "money" : "check")"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

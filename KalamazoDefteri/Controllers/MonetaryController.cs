@@ -32,9 +32,35 @@ namespace KalamazoDefteri.Controllers
             });
         }
 
+        public ActionResult DeleteIncome(int id)
+        {
+            var income = Database.Session.Load<Models.Incomings>(id);
+
+            var currUser = Database.Session.Query<Models.User>()           // Kullanıcının balance değerinden düşürülebilmesi için
+                .Where(c => c.Username == HttpContext.User.Identity.Name) // kullanıcıyı da update etmemiz gerekmekte.
+                .ToList();                                               // ID'den çekmememin nedeni, ID'nin boş gelebilme ihtimalinin olması.
+                                                                        // (çift tıklama gibi şeyler yaşanabilir)
+            if (income == null)
+                RedirectToAction("IncomeIndex", currUser[0].Id);
+
+            currUser[0].Balance -= income.Payment;
+
+            Database.Session.Delete(income);
+            Database.Session.Update(currUser[0]);
+
+            Database.Session.Flush();
+
+            return RedirectToAction("IncomeIndex", new { currUser[0].Id });
+        }
+
         [HttpPost]
         public ActionResult NewIncome(ViewModels.Income form)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             var currUser = Database.Session.Query<Models.User>()
                 .Where(u => u.Username == HttpContext.User.Identity.Name)
                 .ToList();

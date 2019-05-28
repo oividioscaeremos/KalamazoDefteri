@@ -14,15 +14,19 @@ namespace KalamazoDefteri.Controllers
         private const int companiesPerPage = 10;
 
         // GET: Firmalar
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int id, int page = 1)
         {
+
             var usersCompanies = Database.Session.Query<Models.Companies>()
+                .Where(c => c.belongsToUser.Id == id)
                 .Skip((page - 1) * companiesPerPage)
                 .Take(companiesPerPage)
                 .ToList();
 
 
-            var totalCompanies = Database.Session.Query<Models.Companies>().Count();
+            var totalCompanies = Database.Session.Query<Models.Companies>()
+                .Where(c => c.belongsToUser.Id == id)
+                .Count();
 
             return View(new CompaniesIndex {
                 ourCompanies = new PagedData<Models.Companies>(usersCompanies, totalCompanies, page, companiesPerPage)
@@ -115,7 +119,7 @@ namespace KalamazoDefteri.Controllers
                 return View("index");
             Database.Session.Delete(company);
             Database.Session.Flush();
-            return RedirectToAction("index");
+            return RedirectToAction("index", new { id = company.belongsToUser.Id });
         }
         
     }

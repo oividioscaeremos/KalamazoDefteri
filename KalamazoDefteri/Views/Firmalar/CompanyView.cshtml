@@ -7,26 +7,34 @@
     <div class="card mt-5">
         <div class="card-body">
             <h4 class="header-title">FİRMA GÖRÜNTÜLE</h4>
+            <div class="input-group mb-3">
+                <label for="example-text-input" class="col-form-label">@Model.ourCompany.Companyname İçin Temin Edilen Gelirler</label>
+                @Html.Partial("_companyIncomes", Model)
+            </div>
+            <div class="input-group mb-3">
+                <label for="example-text-input" class="col-form-label">@Model.ourCompany.Companyname İçin Eklenen Giderler</label>
+                @Html.Partial("_companyOutgoing", Model)
+            </div>
             @using (Html.BeginForm())
             {
                 @Html.ValidationSummary()
-            <div class="form-group">
-                <label for="example-text-input" class="col-form-label">Firma Adı:</label>
-                @Html.TextBoxFor(u => u.ourCompany.Companyname, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                <label for="example-search-input" class="col-form-label">Telefon Numarası:</label>
-                @Html.TextBoxFor(u => u.ourCompany.Phonenumber, new { @class = "form-control" ,@id = "phoneNumber"})
+                <div class="form-group">
+                    <label for="example-text-input" class="col-form-label">Firma Adı:</label>
+                    @Html.TextBoxFor(u => u.ourCompany.Companyname, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="example-search-input" class="col-form-label">Telefon Numarası:</label>
+                    @Html.TextBoxFor(u => u.ourCompany.Phonenumber, new { @class = "form-control", @id = "phoneNumber" })
 
-            </div>
-            <div class="form-group">
-                <label for="example-email-input" class="col-form-label">Fax Numarası :</label>
-                @Html.TextBoxFor(u => u.ourCompany.Faxnumber, new { @class = "form-control", @id = "faxNumber"})
+                </div>
+                <div class="form-group">
+                    <label for="example-email-input" class="col-form-label">Fax Numarası :</label>
+                    @Html.TextBoxFor(u => u.ourCompany.Faxnumber, new { @class = "form-control", @id = "faxNumber" })
 
-            </div>
+                </div>
                 <div class="form-group">
                     <label for="example-email-input" class="col-form-label">IBAN : </label>
-                @Html.TextBoxFor(u => u.ourCompany.Iban, new { @class = "form-control" , @id = "IBAN"})
+                    @Html.TextBoxFor(u => u.ourCompany.Iban, new { @class = "form-control", @id = "IBAN" })
                 </div>
                 <div class="form-group">
                     <label for="example-email-input" class="col-form-label">Vergi Dairesi : </label>
@@ -43,11 +51,11 @@
                         <span class="input-group-text">.00</span>
                     </div>
                     @* Buradan balance'ın değiştirilmesini istemiyoruz
-                        girdi/çıktı olarak eklenmesini istiyoruz bu nedenle
-                        balance değiştirilemez olmalı, ancak disabled = "disabled"
-                        özelliğini textboxfor'a eklediğimizde form'dan data olarak controller'ın
-                        post fonksiyonuna gönderilmiyor, ben de bir tane de disabled olmayan ve görülmeyen
-                        bir textbox yaratarak bir çözüm buldum.*@
+                girdi/çıktı olarak eklenmesini istiyoruz bu nedenle
+                balance değiştirilemez olmalı, ancak disabled = "disabled"
+                özelliğini textboxfor'a eklediğimizde form'dan data olarak controller'ın
+                post fonksiyonuna gönderilmiyor, ben de bir tane de disabled olmayan ve görülmeyen
+                bir textbox yaratarak bir çözüm buldum.*@
                     @Html.TextBoxFor(u => u.ourCompany.Balance, new { style = "height:40px !important; visibility: hidden; ", @class = "form-control" })
 
                 </div>
@@ -55,12 +63,12 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">ADRES</span>
                     </div>
-                    @Html.TextAreaFor(u => u.ourCompany.Address, new { @class = "form-control", style = "height: 209px;"})
+                    @Html.TextAreaFor(u => u.ourCompany.Address, new { @class = "form-control", style = "height: 209px;" })
                 </div>
                 <button type="submit" class="btn btn-flat btn-primary btn-lg btn-block" style="font-weight:bolder">FİRMADAKİ DEĞİŞİKLİKLERİ KAYDET</button>
             }
             <br />
-            <center>veya @Html.RouteLink("Vazgeç", "Firmalar", new { @Model.ourCompany.belongsToUser})</center>
+            <center>veya @Html.RouteLink("Vazgeç", "Firmalar", new { @Model.ourCompany.belongsToUser })</center>
         </div>
     </div>
 </div>

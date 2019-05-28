@@ -27,11 +27,15 @@
                                     <th scope="row">@income.Incomeid</th>
                                     <td>@income.Companies.Companyname</td>
                                     <td>@income.Explanation</td>
-                                    <td>@income.Date</td>
+                                    <td>@income.Date.ToString("dd/MM/yyyy")</td>
                                     <td>@income.Payment</td>
                                     <td>
-                                        <a href="#"><i class="ti-trash"></i></a>
-                                        <a href="#"><i class="ti-folder"></i></a>
+                                        <a href="@Url.Action("DeleteIncome","Monetary",new { id = income.Incomeid })"
+                                           class="btn btn-flat btn-danger"
+                                           data-post="Geliri Silmek İstediğinize Emin Misiniz?"
+                                           style="height:26px; padding-top:4px;">
+                                            <i class="ti-trash">  SİL</i>
+                                        </a>
                                     </td>
                                 </tr>
                             }
@@ -47,7 +51,7 @@
                                         style="margin-right:0;">
                                     <i class="ti-plus" style="color:yellow;">  </i>
                                     Yeni Girdi Ekle
-                                </button>                            
+                                </button>
                             </td>
                         </tr>
                     </table>

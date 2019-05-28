@@ -1,0 +1,41 @@
+﻿@model KalamazoDefteri.ViewModels.CompaniesViewOne
+@{
+    ViewBag.Title = "_companyIncomes";
+}
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">GELİR ID</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Gelir Tutarı</th>
+                <th scope="col">Alındı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var income in (Database.Session.Query<KalamazoDefteri.Models.Incomings>().Where(i => i.Companies.Companyid == Model.ourCompany.Companyid).ToList()))
+            {
+                <tr>
+                    <th scope="row">@income.Incomeid</th>
+                    <td>@income.Date</td>
+                    <td>@income.Explanation</td>
+                    <td>@income.Payment</td>
+                    <td>
+                        <i class="fa fa-@(income.Date.CompareTo(DateTime.Now) > 0 ? "money" : "check")"></i>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td style="text-align:right;">Toplam Gelir : </td>
+                <td>@(Database.Session.Query<KalamazoDefteri.Models.Incomings>()
+                                        .Where(i => i.Companies.Companyid == Model.ourCompany.Companyid)
+                                        .Select(i => i.Payment)
+                                        .Sum())</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

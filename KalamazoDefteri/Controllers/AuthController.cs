@@ -91,7 +91,7 @@ namespace KalamazoDefteri.Controllers
                 Username = form.username                
             };
             
-            setUserRole("admin",user.Roles);
+            setUserRole("user",user.Roles);
 
             user.SetPassword(form.password);
             
