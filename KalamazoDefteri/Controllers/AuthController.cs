@@ -28,7 +28,7 @@ namespace KalamazoDefteri.Controllers
 
             if (user == null || !user.CheckPassword(form.password))
             {
-                ModelState.AddModelError("Username", "Username or password is incorrect");
+                ModelState.AddModelError("Username", "Kullanıcı adı ve(ya) Şifre hatalı.");
             }
             if (!ModelState.IsValid)
             {
