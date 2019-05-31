@@ -52,9 +52,8 @@ namespace KalamazoDefteri.Controllers
             newComp.Phonenumber = formData.phoneNumber;
             newComp.Iban = formData.IBAN;
             newComp.Taxadministration = formData.TaxAdministration;
-            newComp.Balance = formData.balance; // > 0 ise başlangıç olarak bizden alacaklı manasına gelir
-                                                // < 0 ise bizim bu firmadan alacağımız var manasına gelir
-                                                // = 0 ise herhangi bir alacak-verecek durumu olmadan eklenmiş demektir.
+            newComp.inBalance = formData.inBalance;
+            newComp.outBalance = formData.outBalance;
 
             Database.Session.Save(newComp);
             Database.Session.Flush();
@@ -97,13 +96,13 @@ namespace KalamazoDefteri.Controllers
             var firma = Database.Session.Load<Models.Companies>(id);
 
             firma.Address = form.ourCompany.Address;
-            firma.Balance = form.ourCompany.Balance;
+            firma.inBalance = form.ourCompany.inBalance;
+            firma.outBalance = form.ourCompany.outBalance;
             firma.Companyname = form.ourCompany.Companyname;
             firma.Faxnumber = form.ourCompany.Faxnumber;
             firma.Iban = form.ourCompany.Iban;
             firma.Phonenumber = form.ourCompany.Phonenumber;
             firma.Taxadministration = form.ourCompany.Taxadministration;
-            firma.Balance = form.ourCompany.Balance;
 
             Database.Session.Update(firma);
             Database.Session.Flush();

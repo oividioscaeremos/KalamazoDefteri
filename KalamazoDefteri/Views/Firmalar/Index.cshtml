@@ -12,7 +12,8 @@
                         <th scope="col">@Html.DisplayNameFor(c => c.id)</th>
                         <th scope="col">@Html.DisplayNameFor(c => c.companyName)</th>
                         <th scope="col">@Html.DisplayNameFor(c => c.phoneNumber)</th>
-                        <th scope="col">@Html.DisplayNameFor(c => c.balance)</th>
+                        <th scope="col">@Html.DisplayNameFor(c => c.inBalance)</th>
+                        <th scope="col">@Html.DisplayNameFor(c => c.outBalance)</th>
                         <th scope="col">İşlemler</th>
                     </tr>
                 </thead>
@@ -26,7 +27,8 @@
                                 <th style="height:26px !important; text-align:center; vertical-align:middle; width: 10%;" scope="row">@company.Companyid</th>
                                 <td style="height:26px !important; text-align:center; vertical-align:middle; width: 20%;">@company.Companyname</td>
                                 <td style="height:26px !important; text-align:center; vertical-align:middle; width: 20%;">@company.Phonenumber</td>
-                                <td style="height:26px !important; text-align:center; vertical-align:middle; width: 10%;">@company.Balance</td>
+                                <td style="height:26px !important; text-align:center; vertical-align:middle; width: 10%;">@company.inBalance</td>
+                                <td style="height:26px !important; text-align:center; vertical-align:middle; width: 10%;">@company.outBalance</td>
                                 <td class="dt-center" style="height:26px !important; text-align:center; vertical-align:middle; width:40%">
                                     @*@Html.RouteLink("GÖRÜNTÜLE ve DÜZENLE", "CompanyView", new { id = company.Companyid }, new { @class = "btn btn-flat btn-success", style = "margin-right:0; height:26px; padding-top:4px;" })*@
                                     <a href="@Url.Action("CompanyView",new { id = company.Companyid})"
@@ -48,6 +50,7 @@
                     }
                     <tr>
                         <th scope="row"></th>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

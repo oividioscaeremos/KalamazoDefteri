@@ -51,7 +51,7 @@ namespace KalamazoDefteri.Models
         public UsersMap()
         {
             Table("users");
-            Schema("kalamazodefterinew");
+            Schema("kalamazodefteri");
             
             Id(x => x.Id, map => map.Generator(Generators.Identity));
             Property(x => x.Username, map => map.NotNullable(true));

@@ -20,8 +20,11 @@ namespace KalamazoDefteri.ViewModels
         [Display(Name = "Telefon Numarası")]
         public string phoneNumber { get; set; }
 
-        [Display(Name = "Mevcut Bakiye")]
-        public string balance { get; set; }
+        [Display(Name = "Alacak Bakiye")]
+        public string inBalance { get; set; }
+
+        [Display(Name = "Verecek Bakiye")]
+        public string outBalance { get; set; }
     }
 
     public class CompaniesViewOne
@@ -56,6 +59,9 @@ namespace KalamazoDefteri.ViewModels
         public string IBAN { get; set; }
 
         [Required(ErrorMessage = "Başlangıç için firmaya bir bakiye girmeniz gerekmekte. (Yok ise 0 (sıfır) girebilirsiniz.")]
-        public int balance { get; set; }
+        public int inBalance { get; set; }
+
+        [Required(ErrorMessage = "Başlangıç için firmaya bir bakiye girmeniz gerekmekte. (Yok ise 0 (sıfır) girebilirsiniz.")]
+        public int outBalance { get; set; }
     }
 }

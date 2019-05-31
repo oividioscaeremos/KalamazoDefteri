@@ -44,7 +44,8 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("faxNumber").AsString(20).NotNullable()
                 .WithColumn("TaxAdministration").AsString(15).NotNullable()
                 .WithColumn("IBAN").AsString(32).NotNullable()
-                .WithColumn("balance").AsInt32().NotNullable();
+                .WithColumn("inBalance").AsInt32().NotNullable()
+                .WithColumn("outBalance").AsInt32().NotNullable();
 
             Create.Table("income")
                 .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade).NotNullable()
@@ -52,11 +53,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("date").AsDate().NotNullable()
                 .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade).NotNullable()
                 .WithColumn("explanation").AsString(512).NotNullable()
-                .WithColumn("payment").AsInt32().NotNullable()
-                .WithColumn("isAdded").AsString(1)
-                .WithColumn("isCharged").AsString(1).WithDefaultValue(0)
-                .WithColumn("beforeBalance").AsInt32().WithDefaultValue(0)
-                .WithColumn("didEffectCompany").AsString(1);
+                .WithColumn("payment").AsInt32().NotNullable();
 
             Create.Table("outgoings")
                 .WithColumn("userID").AsInt32().ForeignKey("users", "ID").OnDelete(System.Data.Rule.Cascade).NotNullable()
@@ -64,10 +61,7 @@ namespace KalamazoDefteri.Migrations
                 .WithColumn("date").AsDate().NotNullable()
                 .WithColumn("companyID").AsInt32().ForeignKey("companies", "companyID").OnDelete(System.Data.Rule.Cascade).NotNullable()
                 .WithColumn("explanation").AsString(512).NotNullable()
-                .WithColumn("payment").AsInt32().NotNullable()
-                .WithColumn("didEffectCompany").AsString(1)
-                .WithColumn("beforeBalance").AsInt32().WithDefaultValue(0)
-                .WithColumn("isDecreased").AsString(1);
+                .WithColumn("payment").AsInt32().NotNullable();
 
             Create.Table("roles")
                 .WithColumn("id").AsInt32().Identity().PrimaryKey()

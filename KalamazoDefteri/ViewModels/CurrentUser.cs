@@ -28,34 +28,49 @@ namespace KalamazoDefteri.ViewModels
         public virtual IList<Roles> Roles { get; set; }
              */
         public int id;
+        [Display(Name = "Kullanıcı Adı")]
         public string username { get; set; }
+
+        [Display(Name = "E-Mail")]
         public string email { get; set; }
+
+        [Display(Name = "Ad Soyad")]
         public string adsoyad { get; set; }
+
+        [Display(Name = "Mahalle")]
         public string adresMah { get; set; }
+
+        [Display(Name = "Cadde/Sokak")]
         public string adresCadSk { get; set; }
+
+        [Display(Name = "ŞEHİR")]
         public string adresIl { get; set; }
+
+        [Display(Name = "İLÇE")]
         public string adresIlce { get; set; }
+
+        [Display(Name = "MEVCUT NET BAKİYE")]
         public int balance { get; set; }
     }
 
     public class PrintReportViewModel
     {
-        [Display(Name ="ID")]
+        [Display(Name = "ID")]
         public int id { get; set; }
-        [Display(Name ="ŞİRKET ADI")]
+        [Display(Name = "ŞİRKET ADI")]
         public string CompanyName { get; set; }
-        [Display(Name ="TARİH")]
+        [Display(Name = "TARİH")]
         public DateTime Date { get; set; }
-        [Display(Name ="Açıklama")]
+        [Display(Name = "Açıklama")]
         public string Explanation { get; set; }
-        [Display(Name ="ÖDEME")]
+        [Display(Name = "ÖDEME")]
         public int Payment { get; set; }
 
         public IEnumerable<Incomings> allIncomings { get; set; }
         public IEnumerable<Outgoings> allOutGoings { get; set; }
 
         public User currUser { get; set; }
-        [Display(Name ="BASLANGIC:")]
+        [Display(Name = "BASLANGIC:")]
         public DateTime reportFrom { get; set; }
         [Display(Name = "BITIS:")]
         public DateTime reportTo { get; set; }

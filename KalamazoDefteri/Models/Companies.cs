@@ -17,7 +17,8 @@ namespace KalamazoDefteri.Models
         public virtual string Faxnumber { get; set; }
         public virtual string Taxadministration { get; set; }
         public virtual string Iban { get; set; }
-        public virtual int Balance { get; set; }
+        public virtual int inBalance { get; set; }
+        public virtual int outBalance { get; set; }
     }
 
     public class CompaniesMap : ClassMapping<Models.Companies>
@@ -26,7 +27,7 @@ namespace KalamazoDefteri.Models
         public CompaniesMap()
         {
             Table("companies");
-            Schema("kalamazodefterinew");
+            Schema("kalamazodefteri");
             Lazy(true);
             
             ManyToOne(x => x.belongsToUser, x => {
@@ -41,7 +42,8 @@ namespace KalamazoDefteri.Models
             Property(x => x.Faxnumber, map => map.NotNullable(true));
             Property(x => x.Taxadministration, map => map.NotNullable(true));
             Property(x => x.Iban, map => map.NotNullable(true));
-            Property(x => x.Balance, map => map.NotNullable(true));
+            Property(x => x.inBalance, map => map.NotNullable(true));
+            Property(x => x.outBalance, map => map.NotNullable(true));
 
 
             

@@ -31,12 +31,20 @@
                     <label for="example-email-input" class="col-form-label">V.D.: </label>
                 @Html.TextBoxFor(u => u.TaxAdministration, new { @class = "form-control" })
                 </div>
-                <div class="input-group mb-3" style="width:400px; ">
+                <div class="input-group mb-3" style="width:600px; ">
                     <div class="input-group-prepend">
                         <span class="input-group-text">₺</span>
                     </div>
                     @*<input type="text" style="height:40px;" value="@Model.balance" disabled class="form-control" aria-label="Amount (to the nearest dollar)">*@
-                    @Html.TextBoxFor(u=> u.balance, new  { style = "height:40px;",@class = "form-control" })
+                    @Html.TextBoxFor(u => u.inBalance, new { style = "height:40px;", @class = "form-control" , placeholder = "ALACAK BAKİYESİ"})
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                    @*<input type="text" style="height:40px;" value="@Model.balance" disabled class="form-control" aria-label="Amount (to the nearest dollar)">*@
+                    @Html.TextBoxFor(u => u.outBalance, new { style = "height:40px;", @class = "form-control", placeholder = "VERECEK BAKİYESİ" })
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                     </div>

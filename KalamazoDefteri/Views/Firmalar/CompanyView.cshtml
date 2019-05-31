@@ -45,17 +45,26 @@
                         <span class="input-group-text">₺</span>
                     </div>
                     @*<input type="text" style="height:40px;" value="@Model.ourCompany.Balance" disabled class="form-control" aria-label="Amount (to the nearest dollar)">*@
-                    @Html.TextBoxFor(u => u.ourCompany.Balance, new { style = "height:40px !important;", disabled = "disabled", @class = "form-control" })
+                    @Html.TextBoxFor(u => u.ourCompany.inBalance, new { style = "height:40px !important;", disabled = "disabled", @class = "form-control", placeholder = "ALACAK BAKİYE" })
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                    @*<input type="text" style="height:40px;" value="@Model.ourCompany.Balance" disabled class="form-control" aria-label="Amount (to the nearest dollar)">*@
+                    @Html.TextBoxFor(u => u.ourCompany.outBalance, new { style = "height:40px !important;", disabled = "disabled", @class = "form-control", placeholder = "VERECEK BAKİYE" })
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                     </div>
                     @* Buradan balance'ın değiştirilmesini istemiyoruz
-                girdi/çıktı olarak eklenmesini istiyoruz bu nedenle
-                balance değiştirilemez olmalı, ancak disabled = "disabled"
-                özelliğini textboxfor'a eklediğimizde form'dan data olarak controller'ın
-                post fonksiyonuna gönderilmiyor, ben de bir tane de disabled olmayan ve görülmeyen
-                bir textbox yaratarak bir çözüm buldum.*@
-                    @Html.TextBoxFor(u => u.ourCompany.Balance, new { style = "height:40px !important; visibility: hidden; ", @class = "form-control" })
+        girdi/çıktı olarak eklenmesini istiyoruz bu nedenle
+        balance değiştirilemez olmalı, ancak disabled = "disabled"
+        özelliğini textboxfor'a eklediğimizde form'dan data olarak controller'ın
+        post fonksiyonuna gönderilmiyor, ben de bir tane de disabled olmayan ve görülmeyen
+        bir textbox yaratarak bir çözüm buldum.*@
+                    @Html.TextBoxFor(u => u.ourCompany.inBalance, new { style = "height:40px !important; visibility: hidden; ", @class = "form-control" })
+                    @Html.TextBoxFor(u => u.ourCompany.outBalance, new { style = "height:40px !important; visibility: hidden; ", @class = "form-control" })
 
                 </div>
                 <div class="input-group mb-3">

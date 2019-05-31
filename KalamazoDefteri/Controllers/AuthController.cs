@@ -25,7 +25,6 @@ namespace KalamazoDefteri.Controllers
         {
             var user = Database.Session.Query<User>().FirstOrDefault(p => p.Username == form.username);
 
-
             if (user == null || !user.CheckPassword(form.password))
             {
                 ModelState.AddModelError("Username", "Kullanıcı adı ve(ya) Şifre hatalı.");
@@ -41,7 +40,8 @@ namespace KalamazoDefteri.Controllers
             {
                 return RedirectToAction("Index", "Users", new { area = "Admin" });
             }
-            else{
+            else
+            {
                 if (!String.IsNullOrWhiteSpace(returnUrl))
                 {
                     return Redirect(returnUrl);
