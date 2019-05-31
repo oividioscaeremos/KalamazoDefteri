@@ -12,6 +12,32 @@ namespace KalamazoDefteri.ViewModels
         public int id;
     }
 
+    public class CurrentUserView
+    {
+        /*
+         public virtual int Id { get; set; }
+        public virtual string Username { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string adSoyad { get; set; }
+        public virtual string addressMah { get; set; }
+        public virtual string addRessCadSk { get; set; }
+        public virtual string addressIl { get; set; }
+        public virtual string addressIlce { get; set; }
+        public virtual int Balance { get; set; }
+        public virtual string PasswordHash { get; set; }
+        public virtual IList<Roles> Roles { get; set; }
+             */
+        public int id;
+        public string username { get; set; }
+        public string email { get; set; }
+        public string adsoyad { get; set; }
+        public string adresMah { get; set; }
+        public string adresCadSk { get; set; }
+        public string adresIl { get; set; }
+        public string adresIlce { get; set; }
+        public int balance { get; set; }
+    }
+
     public class PrintReportViewModel
     {
         [Display(Name ="ID")]

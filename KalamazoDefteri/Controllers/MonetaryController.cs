@@ -140,6 +140,7 @@ namespace KalamazoDefteri.Controllers
 
             company.Balance -= income.Payment;
             currUser.Balance += income.Payment;
+
             income.didEffectCompany = "1";
             income.isAdded = "1";
             income.isCharged = "1";
@@ -164,73 +165,9 @@ namespace KalamazoDefteri.Controllers
             if (income == null)
                 RedirectToAction("IncomeIndex", currUser.Id);
 
-            if (income.isAdded == "1") // silinecek gelir eğer bakiyemize eklendiyse
-            {
-                if (income.didEffectCompany == "1") // gelir eklenirken eklendiği firmada değişikliğe sebep olduysa
-                {
-                    if (income.beforeBalance != 0) // eğer bu gelir firmaya eklenirken firmanın alacağından düşülmüşse burası çalışacak
-                    {
-                        if (income.beforeBalance < 0) // firma gelir öncesi bize borçlu durumdaysa
-                        {
-                            if (income.isCharged == "1")
-                            {
-                                belongsToCompany.Balance = income.Payment; // ekstra borçlanmıştı, geri alıyoruz +'YI - YAPTINNNNNNNNNNNNNN
-                                currUser.Balance -= income.Payment; // bu firmadan gelir elde ettiğimizi belirtmiştik, geri siliyoruz
-                            }
-                            else
-                            {
-                                belongsToCompany.Balance -= income.Payment;
-                            }
+            belongsToCompany.Balance += income.Payment;
+            currUser.Balance -= income.Payment;
 
-                        }
-                        else // gelir öncesi firmaya biz borçlu isek
-                        {
-                            if (income.beforeBalance < income.Payment)
-                            {
-                                int currBalance = income.beforeBalance;  // Firma bizden alacaklı durumda ancak eklediğimiz gelir firmanın
-                                belongsToCompany.Balance += currBalance;    // alacağından fazlaysa, alacağı para kadar düşülür.
-                                                                            // biz de alacağını ödediğimiz için alacak miktarı kadar
-                                                                            // daha az gelir ekleriz
-                                                                            // Maksimum 0'a kadar düşülür çünkü gelir nakit elde edilir. Nakit olarak 10birim fiyatlı ürün sattığımızda
-                                                                            // ve firmanın bizden 5 birim fiyat alacağı varsa, 5 birim fiyat alacağından düşülür ve geri kalan kısım
-                                                                            // gelir olarak eklenir.
-                                currUser.Balance -= (income.Payment - income.beforeBalance);
-                            }
-                            else
-                            {                                       // Firmanın alacağı eğer gelire eşit veya gelirden fazlaysa
-                                belongsToCompany.Balance += income.Payment; // alacağından düşülür.
-                            }
-                            //belongsToCompany.Balance -= income.beforeBalance; // firma bize ödeme yapmıştı, bunu geriye alıyoruz.
-
-                        }
-                    }
-                    else
-                    {
-                        belongsToCompany.Balance = 0; // firmadan gelir olarak yansıdığı için firmadan siliyoruz.
-                        currUser.Balance -= income.Payment;
-                    }
-                }
-                else
-                {
-                    if (income.isCharged == "1") // bu ödemenin ileri tarihli olma durumunda tahsil edilip edilmediği kontrol ediliyor.
-                    {
-                        belongsToCompany.Balance += income.Payment;
-                        currUser.Balance -= income.Payment;
-                    }
-                    else if (income.beforeBalance == 0)
-                    {
-                        currUser.Balance -= income.Payment;
-                    }
-                    else if (income.isCharged == "0")
-                    {
-                        belongsToCompany.Balance += income.Payment;
-                    }
-                }
-            }
-            else
-            {
-                belongsToCompany.Balance += income.Payment;
-            }
             Database.Session.Delete(income);
             Database.Session.Update(currUser);
             Database.Session.Update(belongsToCompany);
@@ -330,23 +267,8 @@ namespace KalamazoDefteri.Controllers
             if (outgoing == null)
                 RedirectToAction("OutgoingIndex", new { id = currUser.Id });
 
-            if (outgoing.Date.CompareTo(DateTime.Now) <= 0)
-            {
-                if (outgoing.beforeBalance < 0)
-                {
-                    belongsToComp.Balance += outgoing.Payment; // Firmaya ödeme yapılmıştı, bunu geriye alıyoruz.
-                }
-                else
-                {
-                    belongsToComp.Balance -= outgoing.Payment; // Firmaya ödeme yapılmıştı, bunu geriye alıyoruz.
-                }
-                currUser.Balance += outgoing.Payment;       // Bizden para çıkmıştı, bunu geriye alıyoruz.
-            }
-            else
-            {
-                belongsToComp.Balance -= outgoing.Payment; // Firmaya ödeme geleceğini belirtip sonrasında alacaklı duruma geçirmiştik
-            }                                             // Ödeme yapılamadan silindiği için firmanın alacaklı kısmını düzeltiyoruz.
-                                                          // Kullanıcıdan ödeme tarihi gelmeden para çıktısı olmadığından değişime gerek yok.
+            belongsToComp.Balance -= outgoing.Payment;
+            currUser.Balance += outgoing.Payment;
 
             Database.Session.Delete(outgoing);
             Database.Session.Update(currUser);
@@ -365,107 +287,107 @@ namespace KalamazoDefteri.Controllers
             }
         }
 
-        public ActionResult PayOutgoing(int id, int from = -1)
-        {
-            var outgoing = Database.Session.Load<Models.Outgoings>(id);
-            outgoing.Date = DateTime.Now;
+        //public ActionResult PayOutgoing(int id, int from = -1)
+        //{
+        //    var outgoing = Database.Session.Load<Models.Outgoings>(id);
+        //    outgoing.Date = DateTime.Now;
 
-            var currUser = Database.Session.Query<Models.User>()                     // Kullanıcının balance değerinden düşürülebilmesi için
-                .FirstOrDefault(u => u.Username == HttpContext.User.Identity.Name); // kullanıcıyı da update etmemiz gerekmekte.
-                                                                                    // ID'den çekmememin nedeni, ID'nin boş gelebilme ihtimalinin olması.
-                                                                                    // (çift tıklama gibi şeyler yaşanabilir)
-            var belongsToComp = Database.Session.Query<Models.Companies>()
-                .FirstOrDefault(o => o.Companyid == outgoing.Companies.Companyid);
+        //    var currUser = Database.Session.Query<Models.User>()                     // Kullanıcının balance değerinden düşürülebilmesi için
+        //        .FirstOrDefault(u => u.Username == HttpContext.User.Identity.Name); // kullanıcıyı da update etmemiz gerekmekte.
+        //                                                                            // ID'den çekmememin nedeni, ID'nin boş gelebilme ihtimalinin olması.
+        //                                                                            // (çift tıklama gibi şeyler yaşanabilir)
+        //    var belongsToComp = Database.Session.Query<Models.Companies>()
+        //        .FirstOrDefault(o => o.Companyid == outgoing.Companies.Companyid);
 
-            if (outgoing == null)
-                RedirectToAction("OutgoingIndex", new { id = currUser.Id });
+        //    if (outgoing == null)
+        //        RedirectToAction("OutgoingIndex", new { id = currUser.Id });
 
-            if (outgoing.beforeBalance < 0)
-            {
-                belongsToComp.Balance += outgoing.Payment;      // Firmaya ödeme yapılmıştı, bunu geriye alıyoruz.
-            }
-            else
-            {
-                belongsToComp.Balance -= outgoing.Payment;  // Firmaya ödeme yapılmıştı, bunu geriye alıyoruz.
-            }
-            currUser.Balance += outgoing.Payment;         // Bizden para çıkmıştı, bunu geriye alıyoruz.
+        //    if (outgoing.beforeBalance < 0)
+        //    {
+        //        belongsToComp.Balance += outgoing.Payment;      // Firmaya ödeme yapılmıştı, bunu geriye alıyoruz.
+        //    }
+        //    else
+        //    {
+        //        belongsToComp.Balance -= outgoing.Payment;  // Firmaya ödeme yapılmıştı, bunu geriye alıyoruz.
+        //    }
+        //    currUser.Balance += outgoing.Payment;         // Bizden para çıkmıştı, bunu geriye alıyoruz.
 
-            Database.Session.Update(outgoing);
-            Database.Session.Update(currUser);
-            Database.Session.Update(belongsToComp);
+        //    Database.Session.Update(outgoing);
+        //    Database.Session.Update(currUser);
+        //    Database.Session.Update(belongsToComp);
 
-            Database.Session.Flush();
+        //    Database.Session.Flush();
 
-            if (from != -1)
-            {
+        //    if (from != -1)
+        //    {
 
-                return RedirectToRoute("CompanyView", new { id = from });
-            }
-            else
-            {
-                return RedirectToAction("OutgoingIndex", new { id = currUser.Id });
-            }
-        }
+        //        return RedirectToRoute("CompanyView", new { id = from });
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("OutgoingIndex", new { id = currUser.Id });
+        //    }
+        //}
 
-        public ActionResult PayCompany(int id, int from = -1)
-        {
-            var currUser = Database.Session.Query<Models.User>()                       // Kullanıcının balance değerinden düşürülebilmesi için
-                .FirstOrDefault(u => u.Username == HttpContext.User.Identity.Name);   // kullanıcıyı da update etmemiz gerekmekte.
-                                                                                      // ID'den çekmememin nedeni, ID'nin boş gelebilme ihtimalinin olması.
-                                                                                      // (çift tıklama gibi şeyler yaşanabilir)
-            var belongsToComp = Database.Session.Load<Models.Companies>(id);
+        //public ActionResult PayCompany(int id, int from = -1)
+        //{
+        //    var currUser = Database.Session.Query<Models.User>()                       // Kullanıcının balance değerinden düşürülebilmesi için
+        //        .FirstOrDefault(u => u.Username == HttpContext.User.Identity.Name);   // kullanıcıyı da update etmemiz gerekmekte.
+        //                                                                              // ID'den çekmememin nedeni, ID'nin boş gelebilme ihtimalinin olması.
+        //                                                                              // (çift tıklama gibi şeyler yaşanabilir)
+        //    var belongsToComp = Database.Session.Load<Models.Companies>(id);
 
-            if (belongsToComp.Balance > 0)
-            {
-                // firmanın bizden alacağı para var
-                Models.Outgoings outgoingFull = new Models.Outgoings();
+        //    if (belongsToComp.Balance > 0)
+        //    {
+        //        // firmanın bizden alacağı para var
+        //        Models.Outgoings outgoingFull = new Models.Outgoings();
 
-                outgoingFull.beforeBalance = belongsToComp.Balance;
-                outgoingFull.Companies = belongsToComp;
-                outgoingFull.Date = DateTime.Now;
-                outgoingFull.Explanation = belongsToComp.Companyname + " Firmasının tüm alacağı ödendi.";
-                outgoingFull.Payment = belongsToComp.Balance;
-                outgoingFull.Users = currUser;
-                outgoingFull.isDecreased = "1";
-                outgoingFull.didEffectCompany = "1";
+        //        outgoingFull.beforeBalance = belongsToComp.Balance;
+        //        outgoingFull.Companies = belongsToComp;
+        //        outgoingFull.Date = DateTime.Now;
+        //        outgoingFull.Explanation = belongsToComp.Companyname + " Firmasının tüm alacağı ödendi.";
+        //        outgoingFull.Payment = belongsToComp.Balance;
+        //        outgoingFull.Users = currUser;
+        //        outgoingFull.isDecreased = "1";
+        //        outgoingFull.didEffectCompany = "1";
 
-                currUser.Balance -= belongsToComp.Balance;
-                belongsToComp.Balance = 0;
+        //        currUser.Balance -= belongsToComp.Balance;
+        //        belongsToComp.Balance = 0;
 
-                Database.Session.Update(currUser);
-                Database.Session.Update(belongsToComp);
-                Database.Session.Save(outgoingFull);
+        //        Database.Session.Update(currUser);
+        //        Database.Session.Update(belongsToComp);
+        //        Database.Session.Save(outgoingFull);
 
-                Database.Session.Flush();
-            }
-            else
-            {
-                // firmadan alacağımız var
-                Models.Incomings incomeFull = new Models.Incomings();
+        //        Database.Session.Flush();
+        //    }
+        //    else
+        //    {
+        //        // firmadan alacağımız var
+        //        Models.Incomings incomeFull = new Models.Incomings();
 
-                incomeFull.beforeBalance = belongsToComp.Balance;
-                incomeFull.Companies = belongsToComp;
-                incomeFull.Date = DateTime.Now;
-                incomeFull.Explanation = belongsToComp.Companyname + " Firmasından tüm alınacaklar temin edildi.";
-                incomeFull.Payment = Math.Abs(belongsToComp.Balance);
-                incomeFull.Users = currUser;
-                incomeFull.isCharged = "1";
-                incomeFull.isAdded = "1";
-                incomeFull.didEffectCompany = "1";
+        //        incomeFull.beforeBalance = belongsToComp.Balance;
+        //        incomeFull.Companies = belongsToComp;
+        //        incomeFull.Date = DateTime.Now;
+        //        incomeFull.Explanation = belongsToComp.Companyname + " Firmasından tüm alınacaklar temin edildi.";
+        //        incomeFull.Payment = Math.Abs(belongsToComp.Balance);
+        //        incomeFull.Users = currUser;
+        //        incomeFull.isCharged = "1";
+        //        incomeFull.isAdded = "1";
+        //        incomeFull.didEffectCompany = "1";
 
-                currUser.Balance += Math.Abs(belongsToComp.Balance);
-                belongsToComp.Balance = 0;
+        //        currUser.Balance += Math.Abs(belongsToComp.Balance);
+        //        belongsToComp.Balance = 0;
 
-                Database.Session.Update(currUser);
-                Database.Session.Update(belongsToComp);
-                Database.Session.Save(incomeFull);
+        //        Database.Session.Update(currUser);
+        //        Database.Session.Update(belongsToComp);
+        //        Database.Session.Save(incomeFull);
 
-                Database.Session.Flush();
-            }
+        //        Database.Session.Flush();
+        //    }
 
 
-            return RedirectToRoute("Firmalar", new { id = from });
-        }
+        //    return RedirectToRoute("Firmalar", new { id = from });
+        //}
 
     }
 }

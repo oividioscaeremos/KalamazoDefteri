@@ -82,7 +82,18 @@
                         <tfoot>
                             <tr>
                                 <td colspan="4">TOPLAM:</td>
-                                <td style="text-align:center;">@sum</td>
+                                @if (sum > 0)
+                                {
+                                    <td style="text-align:center;">
+                                        +@sum
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="text-align:center;">
+                                        @sum
+                                    </td>
+                                }
                             </tr>
                         </tfoot>
                     </table>

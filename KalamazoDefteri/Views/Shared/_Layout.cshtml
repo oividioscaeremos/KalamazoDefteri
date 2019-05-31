@@ -1,6 +1,6 @@
 ﻿@using System.Web.Optimization
     @{ 
-        var userData = Database.Session.Query<KalamazoDefteri.Models.User>().Where(u => u.Username == Html.ViewContext.HttpContext.User.Identity.Name).ToList();
+        var userData = Database.Session.Query<KalamazoDefteri.Models.User>().FirstOrDefault(u => u.Username == Html.ViewContext.HttpContext.User.Identity.Name);
 
     }
     <!doctype html>
@@ -55,7 +55,8 @@
                                 <h4 class="user-name">
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        @User.Identity.Name
+                                        
+                                    <a style="color:white;" href="@Url.Action("ViewUser", new { id = userData.Id })">@User.Identity.Name</a>
                                     }
                                     else
                                     {
@@ -81,28 +82,19 @@
                                         <a href="@Url.RouteUrl("Home")"><i class="ti-home"></i> Ana Sayfa</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Firmalar")) ? "active" : "")">
-                                        <a href="@Url.RouteUrl("Firmalar", new { userData[0].Id })"><i class="ti-list"></i> Firmalar</a>
+                                        <a href="@Url.RouteUrl("Firmalar", new { userData.Id })"><i class="ti-list"></i> Firmalar</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Monetary") && (ViewContext.RouteData.Values["Action"].ToString() == "NewIncome" || ViewContext.RouteData.Values["Action"].ToString() == "IncomeIndex")) ? "active" : "")">
-                                        <a href="@Url.RouteUrl("income", new { userData[0].Id})"><i class="ti-arrow-down"></i> Gelirler</a>
+                                        <a href="@Url.RouteUrl("income", new { userData.Id})"><i class="ti-arrow-down"></i> Gelirler</a>
                                     </li>
                                     <li class="@(((ViewContext.RouteData.Values["Controller"].ToString() == "Monetary") && (ViewContext.RouteData.Values["Action"].ToString() == "NewOutgoing" || ViewContext.RouteData.Values["Action"].ToString() == "OutgoingIndex")) ? "active" : "")">
-                                        <a href="@Url.RouteUrl("outgoing", new { userData[0].Id})"><i class="ti-arrow-up"></i> Giderler</a>
+                                        <a href="@Url.RouteUrl("outgoing", new { userData.Id})"><i class="ti-arrow-up"></i> Giderler</a>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-                    <!-- nav and search button -->
-                    <div class="col-lg-3 clearfix">
-                        <div class="search-box">
-                            <form action="#">
-                                <input type="text" name="search" placeholder="Search..." required>
-                                <i class="ti-search"></i>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- mobile_menu -->
+                    
                     <div class="col-12 d-block d-lg-none">
                         <div id="mobile_menu"></div>
                     </div>

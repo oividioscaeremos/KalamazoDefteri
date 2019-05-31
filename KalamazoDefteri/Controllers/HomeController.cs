@@ -1,4 +1,5 @@
-﻿using Rotativa;
+﻿using KalamazoDefteri.Models;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,47 @@ namespace KalamazoDefteri.Controllers
             customer.allOutGoings = Database.Session.Query<Models.Outgoings>().Where(i => i.Users.Id == currentUser.Id);
             customer.currUser = currentUser;
             return View(customer);
+        }
+
+        public ActionResult ViewUser(int id)
+        {
+            var user = Database.Session.Load<Models.User>(id);
+            return View(new ViewModels.CurrentUserView {
+                id = user.Id,
+                username = user.Username,
+                adsoyad = user.adSoyad,
+                email = user.Email,
+                adresMah = user.addressMah,
+                adresCadSk = user.addRessCadSk,
+                adresIlce = user.addressIlce,
+                adresIl = user.addressIl,
+                balance = user.Balance
+            });
+        }
+
+        [HttpPost]
+        public ActionResult ViewUser(int id,ViewModels.CurrentUserView form)
+        {            
+            var user = Database.Session.Load<User>(id);
+            if (user == null)
+                return HttpNotFound();
+
+            if (Database.Session.Query<User>().Any(u => u.Username == form.username && u.Id != id))
+                ModelState.AddModelError("Username", "Kullanıcı adı zaten kullanımda.");
+
+            if (!ModelState.IsValid)
+                return View(form);
+
+            user.adSoyad = form.adsoyad;
+            user.Email = form.email;
+            user.addressMah = form.adresMah;
+            user.addRessCadSk = form.adresCadSk;
+            user.addressIlce = form.adresIlce;
+            user.addressIl = form.adresIl;
+
+            Database.Session.Update(user);
+            Database.Session.Flush();
+            return RedirectToRoute("Home");
         }
 
         //[Authorize(Roles = "user")]

@@ -25,12 +25,3 @@
         </div>
     </div>
 </div>
-
-
-@*@Html.Partial("_PrintReport", new KalamazoDefteri.ViewModels.PrintReportViewModel {
-        allIncomings = Model.allIncomings,
-        allOutGoings = Model.allOutGoings,
-        currUser = Model.currUser
-    })*@
-<br />
-@Html.ActionLink("Print Details View To PDF", "PrintPartialViewToPdf", new { id = Model.currUser.Id })

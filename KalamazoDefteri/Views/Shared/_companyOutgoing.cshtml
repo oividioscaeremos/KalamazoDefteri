@@ -1,6 +1,7 @@
 ﻿@model KalamazoDefteri.ViewModels.CompaniesViewOne
 @{
     ViewBag.Title = "_companyIncomes";
+    int sum = 0;
 }
 <div class="table-responsive">
     <table class="table table-sm">
@@ -16,6 +17,7 @@
         <tbody>
             @foreach (var outgoing in (Database.Session.Query<KalamazoDefteri.Models.Outgoings>().Where(i => i.Companies.Companyid == Model.ourCompany.Companyid).ToList()))
             {
+                sum += outgoing.Payment;
                 <tr>
                     <th scope="row">@outgoing.Outgoingid</th>
                     <td>@outgoing.Date</td>
@@ -37,6 +39,11 @@
                     </td>
                 </tr>
             }
+        <th scope="row"></th>
+        <td></td>
+        <td style="text-align:right; font-weight:bold;">Toplam Gider:</td>
+        <td>@sum</td>
+        <td></td>
         </tbody>
     </table>
 </div>

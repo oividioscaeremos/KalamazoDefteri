@@ -331,6 +331,7 @@
     <Content Include="Views\Shared\_companyOutgoing.cshtml" />
     <Content Include="Views\Monetary\NewOutgoing.cshtml" />
     <Content Include="Views\Shared\_PrintReport.cshtml" />
+    <Content Include="Views\Home\ViewUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

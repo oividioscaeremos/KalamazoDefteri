@@ -1,0 +1,83 @@
+﻿@model KalamazoDefteri.ViewModels.CurrentUserView
+@{
+    ViewBag.Title = "KULLANICI GÖRÜNTÜLE";
+}
+
+<div class="col-12">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h4 class="header-title">KULLANICI GÖRÜNTÜLE ve DÜZENLE</h4>
+            
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label for="example-text-input" class="col-form-label">Kullanıcı Adı:</label>
+                    @Html.TextBoxFor(u => u.username, new { @class = "form-control" , disabled = "disabled"})
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.adsoyad)
+                    @Html.TextBoxFor(u => u.adsoyad, new { @class = "form-control"})
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.email)
+                    @Html.TextBoxFor(u => u.email, new { @class = "form-control"})
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(x => x.adresMah)
+                        @*<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required="">*@
+                        @Html.TextBoxFor(x => x.adresMah, new { @class = "form-control", id = "validationCustom01", placeholder = "Mahalle" })
+                    </div>
+                    <br />
+                    <div class="col-md-6 mb-3">
+                        @*<label for="validationCustom02">Last name</label>*@
+                        @Html.LabelFor(x => x.adresCadSk)
+                        @Html.TextBoxFor(x => x.adresCadSk, new { @class = "form-control", id = "validationCustom01", placeholder = "Cadde/Sokak/KapıNo" })
+                        @*<input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required="">*@
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        @*<label for="validationCustom03">City</label>*@
+                        @Html.LabelFor(x => x.adresIlce)
+                        @Html.TextBoxFor(x => x.adresIlce, new { @class = "form-control", id = "validationCustom01", placeholder = "İlçe" })
+                        @*<input type="text" class="form-control" id="validationCustom03" placeholder="City">*@
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @*<label for="validationCustom03">City</label>*@
+                        @Html.LabelFor(x => x.adresIl)
+                        @Html.TextBoxFor(x => x.adresIl, new { @class = "form-control", id = "validationCustom01", placeholder = "İl" })
+                        @*<input type="text" class="form-control" id="validationCustom03" placeholder="City">*@
+                    </div>
+                </div>
+                <label for="example-email-input" class="col-form-label">Mevcut Bakiye </label>
+                <div class="input-group mb-3" style="width:400px; ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                    @*<input type="text" style="height:40px;" value="@Model.ourCompany.Balance" disabled class="form-control" aria-label="Amount (to the nearest dollar)">*@
+                    @Html.TextBoxFor(u => u.balance, new { style = "height:40px !important;", disabled = "disabled", @class = "form-control" })
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    @* Buradan balance'ın değiştirilmesini istemiyoruz
+                girdi/çıktı olarak eklenmesini istiyoruz bu nedenle
+                balance değiştirilemez olmalı, ancak disabled = "disabled"
+                özelliğini textboxfor'a eklediğimizde form'dan data olarak controller'ın
+                post fonksiyonuna gönderilmiyor, ben de bir tane de disabled olmayan ve görülmeyen
+                bir textbox yaratarak bir çözüm buldum.*@
+                    @Html.TextBoxFor(u => u.balance, new { style = "height:40px !important; visibility: hidden; ", @class = "form-control" })
+
+                </div>
+                
+                <button type="submit" class="btn btn-flat btn-primary btn-lg btn-block" style="font-weight:bolder">DEĞİŞİKLİKLERİ KAYDET</button>
+            }
+            <br />
+            <center>veya @Html.RouteLink("Vazgeç", "Home")</center>
+        </div>
+    </div>
+</div>
