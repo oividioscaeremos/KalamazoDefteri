@@ -1,10 +1,36 @@
-﻿
+﻿@model KalamazoDefteri.ViewModels.PrintReportViewModel
 @{
-    ViewBag.Title = "Ana Sayfa";
+    ViewBag.Title = "ANA SAYFA";
+    var user = Database.Session.Query<KalamazoDefteri.Models.User>().FirstOrDefault(u => u.Username == HttpContext.Current.User.Identity.Name);
+
 }
 
-<h2>Index Action of The HomeController</h2>
-@(User.Identity.IsAuthenticated ? "Logged in" : "Not logged in")
-@(User.IsInRole("admin") ? "Logged in" : "Not logged in")
+<div style="margin:0 auto;" class="col-lg-6 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="header-title">GELİR GİDER RAPORU OLUŞTUR</h4>
+            @using (Html.BeginForm("PrintPartialViewToPdf", "Home", FormMethod.Post))
+            {
+                <div style="width: 40%;">
+                    @Html.DisplayNameFor(s => s.reportFrom)
+                    @Html.TextBoxFor(u => u.reportFrom, new { @class = "form-control", type = "date", @id = "datetimepicker6" })
+                </div>
+                <div style="width: 40%;">
+                    @Html.DisplayNameFor(e => e.reportTo)
+                    @Html.TextBoxFor(u => u.reportTo, new { @class = "form-control", type = "date", @id = "datetimepicker7" })
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary btn-lg btn-block">OLUŞTUR</button>
+            }
+        </div>
+    </div>
+</div>
 
-@User.IsInRole("user")
+
+@*@Html.Partial("_PrintReport", new KalamazoDefteri.ViewModels.PrintReportViewModel {
+        allIncomings = Model.allIncomings,
+        allOutGoings = Model.allOutGoings,
+        currUser = Model.currUser
+    })*@
+<br />
+@Html.ActionLink("Print Details View To PDF", "PrintPartialViewToPdf", new { id = Model.currUser.Id })

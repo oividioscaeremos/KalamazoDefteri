@@ -19,7 +19,7 @@ namespace KalamazoDefteri.Models
         public RolesMap()
         {
             Table("roles");
-            Schema("kalamazodefteri");
+            Schema("kalamazodefterinew");
             Lazy(true);
             Id(x => x.id, map => map.Generator(Generators.Identity));
             Property(x => x.name, map => map.NotNullable(true));

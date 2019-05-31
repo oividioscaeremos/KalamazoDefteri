@@ -22,9 +22,18 @@
                     <td>@outgoing.Explanation</td>
                     <td>@outgoing.Payment</td>
                     <td>
-                        <a href="@Url.Action("Index", new { id = Model.ourCompany.belongsToUser.Id})">
-                            <i class="fa fa-@(outgoing.Date.CompareTo(DateTime.Now) > 0 ? "money" : "check")"></i>
-                        </a>
+                        @if (outgoing.Date.CompareTo(DateTime.Now) > 0)
+                        {
+                            <a href="@Url.Action("PayOutgoing","Monetary",new { id = outgoing.Outgoingid, from = Model.ourCompany.Companyid})"
+                               data-post="Gideri Silmek İstediğinize Emin Misiniz? (Bakiyenizde değişiklik yaratacaktır.)"
+                               style="height:26px; padding-top:4px;">
+                                <i class="fa fa-money"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <i class="fa fa-check"></i>
+                        }
                     </td>
                 </tr>
             }

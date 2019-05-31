@@ -1,0 +1,95 @@
+﻿@using System.Web.Optimization
+@model KalamazoDefteri.ViewModels.PrintReportViewModel
+@{
+    Layout = null;
+    int incomeCount = Model.allIncomings.Count();
+    int outgoingCount = Model.allOutGoings.Count();
+    int sum = 0;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+@Styles.Render("~/projStyles")
+<body>
+
+    <div class="col-12 mt-5" style="margin:0 auto;">
+        <div class="card-body">
+            <div class="invoice-area">
+                <div class="invoice-head">
+                    <div class="row">
+                        <div class="iv-left col-6">
+                            <span>RAPOR</span>
+                        </div>
+                        <div class="iv-right col-6 text-md-right">
+                            <span>TRAKYA KALAMAZO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="invoice-address">
+                            <h3>GELİR-GİDER RAPORU</h3>
+                            <h5>@Model.currUser.adSoyad</h5>
+                            <p>@Model.currUser.addressMah</p>
+                            <p>@Model.currUser.addRessCadSk</p>
+                            <p>@Model.currUser.addressIlce/@Model.currUser.addressIl.ToUpper()</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                        <ul class="invoice-date">
+                            <li>Rapor Tarihi : @DateTime.Now.ToString("dd/MM/yyyy")</li>
+                            <li>Rapor İçeriği : @Model.reportFrom.ToString("dd/MM/yyyy") - @Model.reportTo.ToString("dd/MM/yyyy")</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="invoice-table table-responsive mt-5">
+                    <table class="table table-bordered table-hover text-right">
+                        <thead>
+                            <tr class="text-capitalize">
+                                <th class="text-center" style="width: 5%;">@Html.DisplayNameFor(m => m.id)</th>
+                                <th class="text-center" style="width: 20%; min-width: 130px;">@Html.DisplayNameFor(m => m.CompanyName)</th>
+                                <th class="text-center">@Html.DisplayNameFor(m => m.Explanation)</th>
+                                <th class="text-center" style="min-width: 100px">@Html.DisplayNameFor(m => m.Date)</th>
+                                <th class="text-center">@Html.DisplayNameFor(m => m.Payment)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var income in Model.allIncomings)
+                            {
+                                <tr style="">
+                                    <th style="text-align:center; vertical-align:middle;" scope="row">@income.Incomeid</th>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Companies.Companyname</td>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Explanation</td>
+                                    <td style="text-align:center; vertical-align:middle;">@income.Date.ToString("dd/MM/yyyy")</td>
+                                    <td style="text-align:center; vertical-align:middle; color:black; font-weight:bold;">+ @income.Payment</td>
+                                </tr>
+                                sum += income.Payment;
+                            }
+                            @foreach (var outgoing in Model.allOutGoings)
+                            {
+                                <tr style="">
+                                    <th style="text-align:center; vertical-align:middle;" scope="row">@outgoing.Outgoingid</th>
+                                    <td style="text-align:center; vertical-align:middle;">@outgoing.Companies.Companyname</td>
+                                    <td style="text-align:center; vertical-align:middle;">@outgoing.Explanation</td>
+                                    <td style="text-align:center; vertical-align:middle;">@outgoing.Date.ToString("dd/MM/yyyy")</td>
+                                    <td style="text-align:center; vertical-align:middle; color:darkseagreen; font-weight:bold;">- @outgoing.Payment</td>
+                                </tr>
+                                sum -= outgoing.Payment;
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">TOPLAM:</td>
+                                <td style="text-align:center;">@sum</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/projScripts")
+</body>
+</html>

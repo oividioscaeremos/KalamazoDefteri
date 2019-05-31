@@ -2,7 +2,7 @@
 
 @using System.Web.Optimization
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "KAYDOL";
     Layout = null;
 }
 
@@ -31,43 +31,77 @@
             <div class="login-box ptb--100">
                 @using (Html.BeginForm())
                 {
-                <form>
-                    <div class="login-form-head">
-                        <h4>KAYDOL</h4>
-                        <p>Sisteme Giriş için Kaydolun.</p>
-                    </div>
-                    @Html.ValidationSummary()
+                    <form>
+                        <div class="login-form-head">
+                            <h4>KAYDOL</h4>
+                            <p>Sisteme Giriş için Kaydolun.</p>
+                        </div>
+                        @Html.ValidationSummary()
 
-                    <div class="login-form-body">
-
-                        <div class="form-gp exampleInputEmail1">
-                            @Html.LabelFor(x => x.username)
-                            @Html.EditorFor(x => x.username)
-                            <i class="ti-user"></i>
+                        <div class="login-form-body">
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.adSoyad)
+                                @Html.EditorFor(x => x.adSoyad)
+                                <i class="ti-pencil"></i>
+                            </div>
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.username)
+                                @Html.EditorFor(x => x.username)
+                                <i class="ti-user"></i>
+                            </div>
+                            <div class="form-gp exampleInputEmail1">
+                                @Html.LabelFor(x => x.email)
+                                @Html.EditorFor(x => x.email)
+                                <i class="ti-email"></i>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(x => x.adresMahalle)
+                                    @*<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required="">*@
+                                    @Html.TextBoxFor(x => x.adresMahalle, new { @class="form-control", id="validationCustom01", placeholder="Mahalle"})
+                                </div>
+                                <br />
+                                <div class="col-md-6 mb-3">
+                                    @*<label for="validationCustom02">Last name</label>*@
+                                    @Html.LabelFor(x => x.adresCadde)
+                                    @Html.TextBoxFor(x=> x.adresCadde, new { @class = "form-control", id = "validationCustom01", placeholder = "Cadde/Sokak/KapıNo" })
+                                    @*<input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required="">*@
+                                </div>
+                                
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    @*<label for="validationCustom03">City</label>*@
+                                    @Html.LabelFor(x => x.ilce)
+                                    @Html.TextBoxFor(x => x.ilce, new { @class = "form-control", id = "validationCustom01", placeholder = "İlçe" })
+                                    @*<input type="text" class="form-control" id="validationCustom03" placeholder="City">*@
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @*<label for="validationCustom03">City</label>*@
+                                    @Html.LabelFor(x => x.il)
+                                    @Html.TextBoxFor(x => x.il, new { @class = "form-control", id = "validationCustom01", placeholder = "İl" })
+                                    @*<input type="text" class="form-control" id="validationCustom03" placeholder="City">*@
+                                </div>                                
+                            </div>
+                            
+                            <div class="form-gp exampleInputPassword1">
+                                @Html.LabelFor(x => x.password)
+                                @Html.EditorFor(x => x.password)
+                                <i class="ti-lock"></i>
+                            </div>
+                            <div class="form-gp exampleInputPassword1">
+                                @Html.LabelFor(x => x.passwordconfirm)
+                                @Html.EditorFor(x => x.passwordconfirm)
+                                <i class="ti-lock"></i>
+                            </div>
+                            <div class="submit-btn-area">
+                                <button id="form_submit" type="submit">KAYDOL <i class="ti-arrow-right"></i></button>
+                            </div>
+                            <div class="form-footer text-center mt-5">
+                                <p class="text-muted">Hesabın zaten var mı? <a href="/login">Giriş Yap</a></p>
+                            </div>
                         </div>
-                        <div class="form-gp exampleInputEmail1">
-                            @Html.LabelFor(x => x.email)
-                            @Html.EditorFor(x => x.email)
-                            <i class="ti-email"></i>
-                        </div>
-                        <div class="form-gp exampleInputPassword1">
-                            @Html.LabelFor(x => x.password)
-                            @Html.EditorFor(x => x.password)
-                            <i class="ti-lock"></i>
-                        </div>
-                        <div class="form-gp exampleInputPassword1">
-                            @Html.LabelFor(x => x.passwordconfirm)
-                            @Html.EditorFor(x => x.passwordconfirm)
-                            <i class="ti-lock"></i>
-                        </div>
-                        <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">KAYDOL <i class="ti-arrow-right"></i></button>
-                        </div>
-                        <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Hesabın zaten var mı? <a href="/login">Giriş Yap</a></p>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                 }
             </div>
         </div>

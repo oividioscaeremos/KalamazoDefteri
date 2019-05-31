@@ -11,6 +11,31 @@ namespace KalamazoDefteri.ViewModels
     {
         [DataType(DataType.Text)]
         [Required]
+        [DisplayName("Ad Soyad")]
+        public string adSoyad { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required]
+        [DisplayName("Mahalle")]
+        public string adresMahalle { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required]
+        [DisplayName("Cadde/Sokak")]
+        public string adresCadde { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required]
+        [DisplayName("İlçe")]
+        public string ilce { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required]
+        [DisplayName("İl")]
+        public string il { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required]
         [DisplayName("Kullanıcı Adı")]
         public string username { get; set; }
 

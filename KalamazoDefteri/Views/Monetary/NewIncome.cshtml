@@ -1,6 +1,6 @@
 ﻿@model KalamazoDefteri.ViewModels.Income
 @{
-    ViewBag.Title = "Yeni Girdi";
+    ViewBag.Title = "YENİ GELİR OLUŞTUR";
 }
 
 <div class="col-12">
@@ -13,12 +13,12 @@
                 <div class="form-group">
                     <label for="example-text-input" class="col-form-label">Firma Adı:</label>
                     @Html.DropDownListFor(u => u.selectedSirketID, new SelectList(Model.sirketler.Items, "Companyid", "Companyname", 1), "Bir firma seçiniz.", new { @class = "custom-select", placeholder = "Bir Firma Seçin." })
-
+                    
                 </div>
-                <div class="form-group" style="width: 15%;">
+                @*<div class="form-group" style="width: 15%;">
                     <label for="example-search-input" class="col-form-label">Tarih:</label>
                     @Html.TextBoxFor(u => u.Date, new { @class = "form-control", type = "date", @id = "tarihSecimi" })
-                </div>
+                </div>*@
                 <label for="example-email-input" class="col-form-label">Miktar: </label>
                 <div class="input-group mb-3" style="width:400px; ">
                     <div class="input-group-prepend">
@@ -40,7 +40,7 @@
             }
             <br />
             <center>veya <a href="@Url.Action("IncomeIndex", new { id = (Database.Session.Query<KalamazoDefteri.Models.User>()
-                                                                            .FirstOrDefault(u => u.Username == HttpContext.Current.User.Identity.Name).Id)}))"> Vazgeç</a></center>
+                                                                            .FirstOrDefault(u => u.Username == HttpContext.Current.User.Identity.Name).Id)})"> Vazgeç</a></center>
         </div>
     </div>
 </div>

@@ -26,7 +26,7 @@ namespace KalamazoDefteri.Models
         public CompaniesMap()
         {
             Table("companies");
-            Schema("kalamazodefteri");
+            Schema("kalamazodefterinew");
             Lazy(true);
             
             ManyToOne(x => x.belongsToUser, x => {

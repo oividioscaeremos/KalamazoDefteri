@@ -1,6 +1,6 @@
 ﻿@model KalamazoDefteri.ViewModels.CompaniesIndex
 @{
-    ViewBag.Title = "Firma Görüntüle";
+    ViewBag.Title = "FİRMALAR";
 }
 
 <div class="col-12 mt-5">
@@ -9,10 +9,10 @@
             <table class="table text-center">
                 <thead class="text-uppercase bg-primary">
                     <tr class="text-white">
-                        <th scope="col">ID</th>
-                        <th scope="col">Firma Adı</th>
-                        <th scope="col">Telefon No.</th>
-                        <th scope="col">Mevcut Bakiye</th>
+                        <th scope="col">@Html.DisplayNameFor(c => c.id)</th>
+                        <th scope="col">@Html.DisplayNameFor(c => c.companyName)</th>
+                        <th scope="col">@Html.DisplayNameFor(c => c.phoneNumber)</th>
+                        <th scope="col">@Html.DisplayNameFor(c => c.balance)</th>
                         <th scope="col">İşlemler</th>
                     </tr>
                 </thead>
@@ -24,15 +24,15 @@
                         {
                             <tr>
                                 <th style="height:26px !important; text-align:center; vertical-align:middle; width: 10%;" scope="row">@company.Companyid</th>
-                                <td style="height:26px !important; text-align:center; vertical-align:middle; width: 30%;">@company.Companyname</td>
+                                <td style="height:26px !important; text-align:center; vertical-align:middle; width: 20%;">@company.Companyname</td>
                                 <td style="height:26px !important; text-align:center; vertical-align:middle; width: 20%;">@company.Phonenumber</td>
                                 <td style="height:26px !important; text-align:center; vertical-align:middle; width: 10%;">@company.Balance</td>
-                                <td class="dt-center" style="height:26px !important; text-align:center; vertical-align:middle; width:30%">
+                                <td class="dt-center" style="height:26px !important; text-align:center; vertical-align:middle; width:40%">
                                     @*@Html.RouteLink("GÖRÜNTÜLE ve DÜZENLE", "CompanyView", new { id = company.Companyid }, new { @class = "btn btn-flat btn-success", style = "margin-right:0; height:26px; padding-top:4px;" })*@
                                     <a href="@Url.Action("CompanyView",new { id = company.Companyid})"
                                        class="btn btn-flat btn-success"
                                        style="height:26px; padding-top:4px;">
-                                        <i class="ti-eye">  GÖRÜNTÜLE ve DÜZENLE</i>
+                                        <i class="ti-eye">  DÜZENLE</i>
                                     </a>
                                     <a href="@Url.Action("DeleteCompany",new { id = company.Companyid})"
                                        class="btn btn-flat btn-danger"
@@ -40,6 +40,8 @@
                                        style="height:26px; padding-top:4px;">
                                         <i class="ti-trash">  SİL</i>
                                     </a>
+                                   
+
                                 </td>
                             </tr>
                         }

@@ -1,6 +1,6 @@
 ﻿@model KalamazoDefteri.ViewModels.Income
 @{
-    ViewBag.Title = "IncomeIndex";
+    ViewBag.Title = "GELİRLER";
 }
 
 <div class="col-12 mt-5">
@@ -21,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var income in Model.allIncomings)
+                            @foreach (var income in Model.ourIncomings)
                             {
                                 <tr>
                                     <th style="text-align:center; vertical-align:middle;" scope="row">@income.Incomeid</th>
@@ -55,6 +55,26 @@
                             </td>
                         </tr>
                     </table>
+                    <div class="pagination justify-content-center">
+                        @if (Model.ourIncomings.HasPreviousPage)
+                        {
+                            <a href="@Url.Action("index",new { page=Model.ourIncomings.PreviousPage})" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-left"></i>Önceki Sayfa</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-default disabled btn-sm"><i class="glyphicon glyphicon-chevron-left "></i>Önceki Sayfa</a>
+                        }
+
+                        @if (Model.ourIncomings.HasNextPage)
+                        {
+                            <a href="@Url.Action("index",new { page=Model.ourIncomings.NextPage})" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i>Sonraki Sayfa</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-default disabled btn-sm"><i class="glyphicon glyphicon-chevron-right "></i>Sonraki Sayfa</a>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>

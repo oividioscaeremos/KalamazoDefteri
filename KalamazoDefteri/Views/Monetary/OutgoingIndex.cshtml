@@ -1,27 +1,27 @@
 ﻿@model KalamazoDefteri.ViewModels.Outgoing
 @{
-    ViewBag.Title = "OutgoingIndex";
+    ViewBag.Title = "GİDERLER";
 }
 
 <div class="col-12 mt-5">
     <div class="card">
         <div class="card-body">
-            <h4 class="header-title">Striped Rows</h4>
+            <h4 class="header-title">GİDERLER</h4>
             <div class="single-table">
                 <div class="table-responsive">
                     <table class="table table-striped text-center">
                         <thead class="text-uppercase">
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Firma</th>
-                                <th scope="col">Açıklama</th>
-                                <th scope="col">Tarih</th>
-                                <th scope="col">Girdi</th>
+                                <th scope="col">@Html.DisplayNameFor(o => o.OutgoingID)</th>
+                                <th scope="col">@Html.DisplayNameFor(o => o.Companies)</th>
+                                <th scope="col">@Html.DisplayNameFor(o => o.Explanation)</th>
+                                <th scope="col">@Html.DisplayNameFor(o => o.Date)</th>
+                                <th scope="col">@Html.DisplayNameFor(o => o.Payment)</th>
                                 <th scope="col">İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var outgoing in Model.allOutgoings)
+                            @foreach (var outgoing in Model.ourOutgoings)
                             {
                                 <tr>
                                     <th style="text-align:center; vertical-align:middle;" scope="row">@outgoing.Outgoingid</th>
@@ -50,11 +50,31 @@
                                 <button onclick="location.href='@Url.Action("NewOutgoing")'" class="btn btn-flat btn-primary pull-right"
                                         style="margin-right:0;">
                                     <i class="ti-plus" style="color:yellow;">  </i>
-                                    Yeni Girdi Ekle
+                                    Yeni Gider Ekle
                                 </button>
                             </td>
                         </tr>
                     </table>
+                    <div class="pagination justify-content-center">
+                        @if (Model.ourOutgoings.HasPreviousPage)
+                        {
+                            <a href="@Url.Action("index",new { page=Model.ourOutgoings.PreviousPage})" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-left"></i>Önceki Sayfa</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-default disabled btn-sm"><i class="glyphicon glyphicon-chevron-left "></i>Önceki Sayfa</a>
+                        }
+
+                        @if (Model.ourOutgoings.HasNextPage)
+                        {
+                            <a href="@Url.Action("index",new { page=Model.ourOutgoings.NextPage})" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i>Sonraki Sayfa</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-default disabled btn-sm"><i class="glyphicon glyphicon-chevron-right "></i>Sonraki Sayfa</a>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,6 +16,9 @@ namespace KalamazoDefteri
             routes.MapRoute("Home", "", 
                 new { controller = "Home", action = "Index" }
                 );
+            routes.MapRoute("Partial", "partial",
+                new { controller = "Home", action = "PrintReport" }
+                );
             routes.MapRoute("Firmalar", "firmalar",
                new { controller = "Firmalar", action = "Index" }
                );
@@ -37,6 +40,9 @@ namespace KalamazoDefteri
             routes.MapRoute("CreateNewOutgoing", "new-outgoing",
                new { controller = "Monetary", action = "NewOutgoing" }
                );
+            routes.MapRoute("DeleteOutgoing", "delete-outgoing",
+               new { controller = "Monetary", action = "DeleteOutgoing" }
+               );
             routes.MapRoute("Login", "login", 
                 new { controller = "Auth", action = "Login" }
                 );
@@ -51,6 +57,9 @@ namespace KalamazoDefteri
                 );
             routes.MapRoute("CompanyDelete", "delete-company",
                 new { controller = "Firmalar", action = "DeleteCompany" }
+                );
+            routes.MapRoute("PrintPartialViewToPdf", "print-report",
+                new { controller = "Home", action = "PrintPartialViewToPdf" }
                 );
 
 

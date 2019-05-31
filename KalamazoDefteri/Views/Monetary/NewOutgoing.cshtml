@@ -1,6 +1,6 @@
 ﻿@model KalamazoDefteri.ViewModels.Outgoing
 @{
-    ViewBag.Title = "Yeni Girdi";
+    ViewBag.Title = "YENİ GİDER OLUŞTUR";
 }
 
 <div class="col-12">
@@ -15,10 +15,10 @@
                     @Html.DropDownListFor(u => u.selectedSirketID, new SelectList(Model.sirketler.Items, "Companyid", "Companyname", 1), "Bir firma seçiniz.", new { @class = "custom-select"})
 
                 </div>
-                <div class="form-group" style="width: 15%;">
+                @*<div class="form-group" style="width: 15%;">
                     <label for="example-search-input" class="col-form-label">Tarih:</label>
                     @Html.TextBoxFor(u => u.Date, new { @class = "form-control", type = "date", @id = "tarihSecimi" })
-                </div>
+                </div>*@
                 <label for="example-email-input" class="col-form-label">Miktar: </label>
                 <div class="input-group mb-3" style="width:400px; ">
                     <div class="input-group-prepend">

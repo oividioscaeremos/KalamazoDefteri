@@ -9,8 +9,19 @@ using System.Web;
 namespace KalamazoDefteri.ViewModels
 {
     public class CompaniesIndex
-    {       
-            public PagedData<Companies> ourCompanies { get; set; }
+    {
+        public PagedData<Companies> ourCompanies { get; set; }
+
+        [Display(Name = "ID")]
+        public string id { get; set; }
+        [Display(Name = "Firma Adı")]
+        public string companyName { get; set; }
+
+        [Display(Name = "Telefon Numarası")]
+        public string phoneNumber { get; set; }
+
+        [Display(Name = "Mevcut Bakiye")]
+        public string balance { get; set; }
     }
 
     public class CompaniesViewOne

@@ -76,6 +76,9 @@
     <Reference Include="Remotion.Linq.EagerFetching, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.EagerFetching.2.2.0\lib\net45\Remotion.Linq.EagerFetching.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
@@ -170,6 +173,7 @@
     <Content Include="Content\images\card\card-img7.jpg" />
     <Content Include="Content\images\card\card-img8.jpg" />
     <Content Include="Content\images\card\card-img9.jpg" />
+    <Content Include="Content\images\icon\favicon.ico" />
     <Content Include="Content\images\icon\loader.gif" />
     <Content Include="Content\images\icon\logo.png" />
     <Content Include="Content\images\icon\logo2.png" />
@@ -189,6 +193,7 @@
     <Content Include="Content\images\team\team-author3.jpg" />
     <Content Include="Content\images\team\team-author4.jpg" />
     <Content Include="Content\images\team\team-author5.jpg" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\js\amcharts.js" />
     <Content Include="Content\js\ammap.js" />
     <Content Include="Content\js\bar-chart.js" />
@@ -260,6 +265,12 @@
     <Content Include="Content\js\inputmask\min\inputmask.min.js" />
     <Content Include="Content\js\inputmask\min\inputmask.numeric.extensions.min.js" />
     <Content Include="Content\js\inputmask\min\jquery.inputmask.min.js" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Content\js\jquery.datetimepicker.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -303,6 +314,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Shared\_RoleEditor.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ResetPassword.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -318,6 +330,7 @@
     <Content Include="Views\Shared\_companyIncomes.cshtml" />
     <Content Include="Views\Shared\_companyOutgoing.cshtml" />
     <Content Include="Views\Monetary\NewOutgoing.cshtml" />
+    <Content Include="Views\Shared\_PrintReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

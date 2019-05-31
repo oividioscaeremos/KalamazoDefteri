@@ -41,13 +41,11 @@ namespace KalamazoDefteri.Controllers
             {
                 return RedirectToAction("Index", "Users", new { area = "Admin" });
             }
-            else
-            {
+            else{
                 if (!String.IsNullOrWhiteSpace(returnUrl))
                 {
                     return Redirect(returnUrl);
                 }
-
 
                 return RedirectToRoute("Home", user.Id);
             }          
@@ -88,7 +86,12 @@ namespace KalamazoDefteri.Controllers
             var user = new User
             {
                 Email = form.email,
-                Username = form.username                
+                Username = form.username,
+                adSoyad = form.adSoyad,
+                addressMah = form.adresMahalle,
+                addRessCadSk = form.adresCadde,
+                addressIl = form.il,
+                addressIlce = form.ilce
             };
             
             setUserRole("user",user.Roles);

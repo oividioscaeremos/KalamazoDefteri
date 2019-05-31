@@ -31,7 +31,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="index.html"><img src="../../Content/images/icon/logo2.png" alt="logo"></a>
+                            <a href="index.html"><img src="../../Content/images/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -46,7 +46,8 @@
                                         ">
                                         <i class="ti-power-off"></i>
                                     </li>
-                            </ul>                           </a>
+                                </a>
+                            </ul>
                         </div>
                         <div class="clearfix d-md-inline-block d-block">
                             <div class="user-profile m-0">
@@ -129,18 +130,38 @@
     <!-- main wrapper start -->
     <!-- jquery latest version -->
     <!-- Example jQuery Masking Script -->
-    
-    @Scripts.Render("~/projScripts");
+
+    @Scripts.Render("~/projScripts")
+
+    <!-- start chart js -->
     <script type="text/javascript">
         $(document).ready(function ($) {
-            $('#tarihSecimi').minDate(new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000)));
             $('#phoneNumber').inputmask("+\\90(999)999-99-99");
             $('#faxNumber').inputmask("+\\90(999)999-99-99");
             $('#IBAN').inputmask('TR 99 9999 9999 9999 9999 99', {
                 placeholder: ' ____ ____ ____ ____ ____ __'
             });
+
+            $("#datetimepicker6").datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+            }).on('changeDate', function (selected) {
+                var startDate = new Date(selected.date.valueOf());
+                $('#datetimepicker7').datepicker('setStartDate', startDate);
+            }).on('clearDate', function (selected) {
+                $('#datetimepicker7').datepicker('setStartDate', null);
+            });
+
+            $("#datetimepicker7").datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+            }).on('changeDate', function (selected) {
+                var endDate = new Date(selected.date.valueOf());
+                $('#datetimepicker6').datepicker('setEndDate', endDate);
+            }).on('clearDate', function (selected) {
+                $('#datetimepicker6').datepicker('setEndDate', null);
+            });
         });
     </script>
-    <!-- start chart js -->
 </body>
 </html>

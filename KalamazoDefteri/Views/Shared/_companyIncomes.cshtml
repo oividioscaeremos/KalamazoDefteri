@@ -26,7 +26,7 @@
                     <td>
                         <i class="fa fa-@(income.Date.CompareTo(DateTime.Now) > 0 ? "money" : "check")"></i>
                         <a href="@Url.Action("DeleteIncome","Monetary",new { id = income.Incomeid, from = income.Users.Id})"
-                           data-post="Gideri Silmek İstediğinize Emin Misiniz? (Bakiyenizde değişiklik yaratacaktır.)"
+                           data-post="Geliri Silmek İstediğinize Emin Misiniz? (Bakiyenizde değişiklik yaratacaktır.)"
                            style="height:26px; padding-top:4px;">
                             <i class="ti-trash"></i>
                         </a>

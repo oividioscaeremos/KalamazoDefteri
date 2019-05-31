@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KalamazoDefteri.Infrastructures;
 using KalamazoDefteri.Models;
 
 namespace KalamazoDefteri.ViewModels
@@ -36,11 +37,12 @@ namespace KalamazoDefteri.ViewModels
 
     public class Income
     {
+        public PagedData<Models.Incomings> ourIncomings { get; set; }
+
         [Required]
         public int selectedSirketID { get; set; }
         public SelectList sirketler { get; set; }
         public int Incomeid { get; set; }
-        public User Owner { get; set; }
         public Companies Companies { get; set; }
 
         [Required(ErrorMessage ="Tarih alanı boş bırakılamaz.")]
@@ -51,29 +53,36 @@ namespace KalamazoDefteri.ViewModels
 
         [Required]
         public int Payment { get; set; }
+        
+        
 
-        public IEnumerable<Incomings> allIncomings { get; set; }
     }
 
     public class Outgoing
     {
+        public PagedData<Models.Outgoings> ourOutgoings { get; set; }
+
         [Required]
         public int selectedSirketID { get; set; }
         public SelectList sirketler { get; set; }
-        public int Incomeid { get; set; }
-        public User Owner { get; set; }
+
+        [Display(Name ="ID")]
+        public int OutgoingID { get; set; }
+        [Display(Name = "Şirket")]
         public Companies Companies { get; set; }
 
         [Required(ErrorMessage = "Tarih alanı boş bırakılamaz.")]
+        [Display(Name = "Tarih")]
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name = "Açıklama")]
         public string Explanation { get; set; }
 
         [Required]
+        [Display(Name = "Miktar")]
         public int Payment { get; set; }
-
-        public IEnumerable<Outgoings> allOutgoings { get; set; }
+        
     }
 
 }

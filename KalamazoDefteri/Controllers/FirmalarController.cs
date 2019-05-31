@@ -43,21 +43,23 @@ namespace KalamazoDefteri.Controllers
         {
             var newComp = new Models.Companies();
             var currentUser = Database.Session.Query<Models.User>()
-                .Where(u => u.Username == HttpContext.User.Identity.Name)
-                .ToList();
+                .FirstOrDefault(u => u.Username == HttpContext.User.Identity.Name);
+
             newComp.Companyname = formData.companyMame;
             newComp.Address = formData.address;
-            newComp.belongsToUser = currentUser[0];
+            newComp.belongsToUser = currentUser;
             newComp.Faxnumber = formData.faxNumber;
             newComp.Phonenumber = formData.phoneNumber;
             newComp.Iban = formData.IBAN;
             newComp.Taxadministration = formData.TaxAdministration;
-            newComp.Balance = formData.balance;
+            newComp.Balance = formData.balance; // > 0 ise başlangıç olarak bizden alacaklı manasına gelir
+                                                // < 0 ise bizim bu firmadan alacağımız var manasına gelir
+                                                // = 0 ise herhangi bir alacak-verecek durumu olmadan eklenmiş demektir.
 
             Database.Session.Save(newComp);
             Database.Session.Flush();
 
-            return RedirectToRoute("Firmalar");
+            return RedirectToRoute("Firmalar", new { id = currentUser.Id});
         }
 
         public ActionResult CompanyView(int id)
@@ -67,24 +69,23 @@ namespace KalamazoDefteri.Controllers
 
                 // Veritabanından şu anda authenticate olmuş olan user'ın bilgileri çekiliyor.
             var currentUser = Database.Session.Query<Models.User>()
-                .Where(u => u.Username == HttpContext.User.Identity.Name)
-                .Select(u=> u.Id);
+                .FirstOrDefault(c => c.Username == HttpContext.User.Identity.Name);
 
             // Company id'den firmanın ait olduğu kullanıcının ID'si çekiliyor.
             //var belongsTo = Database.Session.Load<Models.Companies>(id).belongsToUser.Id;
             var belongsTo = Database.Session.Query<Models.Companies>()
-                .Where(u => u.Companyid == id)
-                .Select(u => u.belongsToUser.Id);
-            if(belongsTo.ToString() == currentUser.ToString())
+                .FirstOrDefault(b => b.belongsToUser == currentUser);
+
+            if(belongsTo.belongsToUser.Id == currentUser.Id)
             {
                 return View(new CompaniesViewOne
                 {
-                    ourCompany = Database.Session.Load<Models.Companies>(id)
+                    ourCompany = Database.Session.Load<Models.Companies>(belongsTo.Companyid)
                 });                
             }
             else
             {
-                return RedirectToAction("index");
+                return RedirectToAction("index", new { id });
             }            
         }
 
@@ -102,13 +103,12 @@ namespace KalamazoDefteri.Controllers
             firma.Iban = form.ourCompany.Iban;
             firma.Phonenumber = form.ourCompany.Phonenumber;
             firma.Taxadministration = form.ourCompany.Taxadministration;
-            var abc = form.ourCompany.Balance;
             firma.Balance = form.ourCompany.Balance;
 
             Database.Session.Update(firma);
             Database.Session.Flush();
 
-            return RedirectToRoute("Firmalar");
+            return RedirectToRoute("Firmalar", new { id = firma.belongsToUser.Id});
         }
         
         public ActionResult DeleteCompany(int id)
@@ -120,7 +120,6 @@ namespace KalamazoDefteri.Controllers
             Database.Session.Delete(company);
             Database.Session.Flush();
             return RedirectToAction("index", new { id = company.belongsToUser.Id });
-        }
-        
+        }        
     }
 }
