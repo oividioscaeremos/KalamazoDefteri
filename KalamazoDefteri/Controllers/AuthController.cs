@@ -76,7 +76,6 @@ namespace KalamazoDefteri.Controllers
         [HttpPost]
         public ActionResult Register(AuthRegister form)
         {
-
             if (Database.Session.Query<User>().Any(u => u.Username == form.username))
                 ModelState.AddModelError("username","Kullanıcı adı kullanımda.");
 
@@ -93,11 +92,16 @@ namespace KalamazoDefteri.Controllers
                 addressIl = form.il,
                 addressIlce = form.ilce
             };
-            
-            setUserRole("user",user.Roles);
+            if(form.username == "admin")
+            {
+                setUserRole("admin", user.Roles);
+            }
+            else
+            {
+                setUserRole("user", user.Roles);
+            }
 
-            user.SetPassword(form.password);
-            
+            user.SetPassword(form.password);            
 
             Database.Session.Save(user);
             Database.Session.Flush();
